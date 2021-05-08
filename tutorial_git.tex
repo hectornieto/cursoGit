@@ -1,0 +1,80 @@
+\documentclass[a4paper,10pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage[spanish]{babel}
+\usepackage{fontenc}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\usepackage[dvips]{hyperref}
+
+% Title Page
+\title{Tutorial Git}
+\author{Héctor Nieto Solana}
+
+\begin{document}
+ \maketitle
+ \chapter{Primeros pasos}
+  \section{Instalación de Git}
+    En casi todo este curso vamos a trabajar mediante líneas de comandos de \verb+Git+. En primer lugar tendermos que instalar \verb+Git+ en caso de que no esté aún instalado en tu equipo. Sigue las instrucciones adecuadas según el sistema operativo que tengas: 
+    
+      \begin{itemize}
+      \item MacOs: Teclea en un terminal
+        \begin{verbatim}
+        brew install git
+        \end{verbatim}
+
+      \item Windows: Pincha en el siguiente enlace. 
+      
+      \url{https://git-scm.com/download/win}
+      
+      La descarga e instalación debería ser automática
+        
+      \item Linux Debian. Teclea en un terminal
+        \begin{verbatim}
+        sudo apt install git-all
+        \end{verbatim}
+      \end{itemize}
+      
+  \section{Crea tu primer repositorio}
+    Abre un terminal y navega a la carpeta donde quieras crear el repositorio\footnote{usa cd para ir cambiando de carpetas}. Para este ejercicio recomiendo usar una carpeta vacía. Una vez estés en la carpeta de destino teclea
+    \begin{verbatim}
+    git init
+    \end{verbatim}
+  
+    El siguiente mensaje aparece. Diciendo que has creado un nevo repositorio vacío.
+    \begin{lstlisting}[language=bash, frame=single]
+$ git init
+  Initialized empty Git repository in <carpeta_actual>
+    \end{lstlisting}
+    Si te fijas de nuevo en tu carpeta de trabajo, \verb+Git+ ha creado una subcarpeta llamada ``\verb+.git+'' con todos los archivos que requiere el sistema. Si no la ves no entres en pánico, por defecto esta carpeta está oculta\footnote{En Linux todos los archivos y carpetas que comienzan con un punto (``.'') son ocultos}
+  
+    \begin{lstlisting}[frame=single]
+$ ls -lha
+  total 40K
+  drwxrwxr-x 7 hector hector 4,0K may  7 11:01 .
+  drwxrwxr-x 3 hector hector 4,0K may  7 11:01 ..
+  drwxrwxr-x 2 hector hector 4,0K may  7 11:01 branches
+  -rw-rw-r-- 1 hector hector   92 may  7 11:01 config
+  -rw-rw-r-- 1 hector hector   73 may  7 11:01 description
+  -rw-rw-r-- 1 hector hector   23 may  7 11:01 HEAD
+  drwxrwxr-x 2 hector hector 4,0K may  7 11:01 hooks
+  drwxrwxr-x 2 hector hector 4,0K may  7 11:01 info
+  drwxrwxr-x 4 hector hector 4,0K may  7 11:01 objects
+  drwxrwxr-x 4 hector hector 4,0K may  7 11:01 refs
+    \end{lstlisting}
+  
+    No vamos a entrar en detalle sobre la estructura y contenido de esta carpeta ya que es parte del sistema interno de \verb+Git+. Simplemente remarcar que todos los cambios y versiones que hagas en tu futuro código, quedarán registrado dentro de esta carpeta, por lo que nunca la borres. Por otro lado, si quieres borrar un proyecto de \verb+Git+, no tienes más que borrar esta subcarpeta.
+  
+  \section{Creación de una cuenta de GitHub}
+    GitHub es una plataforma online de repositorios \verb+Git+ que actualmente forma parte de la matriz de Microsoft. Para bien o para mal\footnote{Bill Gates se está metiendo dentro de tí no sólo a través de las vacunas}, GitHub es probablemente la plataforma más utilizada para compartir y trabajar online con código abierto, por lo que en este curso nos centraremos en esta plataforma. No obstante, hay otras plataformas alternativas para almacenar tus códigos en la nube como pueden ser \href{https://about.gitlab.com}{GitLab}, \href{https://bitbucket.org}{BitBucket}, e incluso tú o tu compañia/departamento puede tener tu propia plataforma \verb+Git+ para la gestión de software y código. Un último comentario antes de ponernos en faena es que para trabajar con \verb+Git+ no es necesario utilizar GitHub, sin embargo para trabajar con GitHub sí necesitas usar \verb+Git+. 
+  
+
+   
+   
+
+ 
+\end{document}
