@@ -8,24 +8,56 @@
 \usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{listings}
-
+\usepackage{minted}
 \usepackage[dvips]{hyperref}
+\usepackage{fancyvrb,newverbs,xcolor}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+\definecolor{bg}{gray}{0.93}
 
+\newenvironment{cverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{bg}{\BUseVerbatim{cverb}}%
+  \endflushleft
+}
+
+\newverbcommand{\cverb}
+  {\setbox\verbbox\hbox\bgroup}
+  {\egroup\colorbox{bg}{\box\verbbox}}
+
+  
 % Title Page
 \title{Tutorial Git}
 \author{Héctor Nieto Solana}
 
 \begin{document}
  \maketitle
+ \chapter{Introducción}
+ Este tutorial tiene como objetivo la familiarización con el entorno \verb+Git+ y la plataforma \verb+GitHub+. Está diseñado para seguir paso a paso, para su aprovechamiento óptimo a continuación se detalla la guía de estilos.
+ 
+ Este fragmento corresponde a texto normal, donde se explica el funcionamiento de los comandoos.
+ 
+ \begin{cverbatim}
+  Texto con este formato corresponde a los comandos a escribir
+  literalmente en la terminal. 
+ \end{cverbatim}
+
+  Cuando el texto aparezca rodeado por unos corchetes \cverb|<texto_libre>| indica que el texto a introducir es libre a discrección del alumno.
+  
+ \begin{lstlisting}[frame=single, caption=Ejemplo de salida retornada por un comando]
+ Texto en un recuadro indica la salida retornada 
+ tras ejecutar un comando
+ \end{lstlisting} 
+
+ 
  \chapter{Primeros pasos}
   \section{Instalación de Git}
-    En casi todo este curso vamos a trabajar mediante líneas de comandos de \verb+Git+. En primer lugar tendermos que instalar \verb+Git+ en caso de que no esté aún instalado en tu equipo. Sigue las instrucciones adecuadas según el sistema operativo que tengas: 
+    En casi todo este curso vamos a trabajar mediante líneas de comandos de \verb+Git+. En primer lugar tendremos que instalar \verb+Git+ en caso de que no esté aún instalado en tu equipo. Sigue las instrucciones adecuadas según el sistema operativo que tengas: 
     
       \begin{itemize}
       \item MacOs: Teclea en un terminal
-        \begin{verbatim}
-        brew install git
-        \end{verbatim}
+        \cverb|brew install git|
 
       \item Windows: Pincha en el siguiente enlace. 
       
@@ -34,25 +66,22 @@
       La descarga e instalación debería ser automática
         
       \item Linux Debian. Teclea en un terminal
-        \begin{verbatim}
-        sudo apt install git-all
-        \end{verbatim}
+        \cverb|sudo apt install git-all|
       \end{itemize}
       
   \section{Crea tu primer repositorio}
     Abre un terminal y navega a la carpeta donde quieras crear el repositorio\footnote{usa cd para ir cambiando de carpetas}. Para este ejercicio recomiendo usar una carpeta vacía. Una vez estés en la carpeta de destino teclea
-    \begin{verbatim}
-    git init
-    \end{verbatim}
+    
+    \cverb|git init|
   
-    El siguiente mensaje aparece. Diciendo que has creado un nevo repositorio vacío.
-    \begin{lstlisting}[language=bash, frame=single]
-$ git init
-  Initialized empty Git repository in <carpeta_actual>
+    Un mensaje similar a este aparece diciendo que has creado un nevo repositorio vacío.
+    
+    \begin{lstlisting}[language=bash, frame=single, caption=Mensaje al inicializar git]
+  Initialized empty Git repository in \verb+<carpeta_actual>+
     \end{lstlisting}
     Si te fijas de nuevo en tu carpeta de trabajo, \verb+Git+ ha creado una subcarpeta llamada ``\verb+.git+'' con todos los archivos que requiere el sistema. Si no la ves no entres en pánico, por defecto esta carpeta está oculta\footnote{En Linux todos los archivos y carpetas que comienzan con un punto (``.'') son ocultos}
   
-    \begin{lstlisting}[frame=single]
+    \begin{lstlisting}[frame=single, caption=Archivos y subcarpetas por defecto del sistema .git]
 $ ls -lha
   total 40K
   drwxrwxr-x 7 hector hector 4,0K may  7 11:01 .
