@@ -10,18 +10,18 @@ Este repositorio incluye el material necesario para realizar el curso básico de
 2. Qué es Git y la plataforma GitHub [teoría]
 
 3. Primeros pasos en Git y GitHub, [práctica]
-    - Instalación de Git
-    - Registro en GitHub
+    + Instalación de Git
+    + Configuración de Git, archivos básicos
 
 4. Iniciación a Git [práctica]
-    - Añadir y comentar cambios
-    - Control de cambios
-    - Restaurar versiones previas ("checkout" y "reset")
-    - Ramificaciones ("branches") del código
-    - Actualizar el repositorio  local y remoto
+    + Añadir y comentar cambios
+    + Control de cambios
+    + Restaurar versiones previas ("checkout" y "restore")
+    + Ramificaciones ("branches") del código
+    + Actualizar el repositorio  local y remoto
 
 5. Código colaborativo en GitHub [práctica]
-    - Creación de copias ("forks")
-    - Sugerencias de cambios ("Pull requests")
-    - Resolución de conflictos entre versiones ("merge")
+    + Creación de copias ("forks")
+    + Sugerencias de cambios ("Pull requests")
+    + Resolución de conflictos entre versiones ("merge")
 

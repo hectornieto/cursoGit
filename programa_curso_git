@@ -6,12 +6,12 @@
 
 3. Primeros pasos en Git y GitHub, [práctica]
     + Instalación de Git
-    + Registro en GitHub
+    + Configuración de Git, archivos básicos
 
 4. Iniciación a Git [práctica]
     + Añadir y comentar cambios
     + Control de cambios
-    + Restaurar versiones previas ("checkout" y "reset")
+    + Restaurar versiones previas ("checkout" y "restore")
     + Ramificaciones ("branches") del código
     + Actualizar el repositorio  local y remoto
 
