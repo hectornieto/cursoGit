@@ -3,3 +3,9 @@
 *.kilepr
 *.log
 *.synctex.gz
+
+# MS Office files
+*.doc*
+*.ppt*
+*.xls*
+
