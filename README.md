@@ -9,7 +9,7 @@ de almacenamiento de repositorios ```GitHub```.
 No se requiere apenas ningún requisito previo a los alumnos. 
 
 Tan sólo es recomendable que el alumno/a se registre previamente en 
-[GitHub](https://github.com/login "Registro en GitHub").
+[GitHub](https://github.com/join "Registro en GitHub").
 
 El propio curso incluirá los pasos para la instalación y configuración de Git. 
 La mayor parte del trabajo la realizaremos en la terminal del sistema operativo.
