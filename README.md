@@ -30,16 +30,19 @@ Por tanto, tampoco se requiere que el alumno tenga algún conocimiento en ningú
     + Configuración de Git, archivos básicos
 
 4. Iniciación a Git [práctica]
-    + Añadir y comentar cambios
-    + Control de cambios
+    + Crear repositorios
+    + Control de cambios y versionado
     + Restaurar versiones previas ("checkout" y "restore")
     + Ramificaciones ("branches") del código
     + Actualizar el repositorio  local y remoto
 
-5. Código colaborativo en GitHub [práctica]
+5. Fusionado y resolución de conflictos [práctica]
+    + Fusionado de ramificaciones
+    + Resolución de conflictos
+
+6. Código colaborativo en GitHub [práctica]
     + Creación de copias ("forks")
     + Sugerencias de cambios ("Pull requests")
-    + Resolución de conflictos entre versiones ("merge")
 
 ## Licencia
 Creative Commons Zero v1.0 Universal.
