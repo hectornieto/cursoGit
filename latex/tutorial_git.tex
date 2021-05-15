@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a5paper, oneside,10pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -9,10 +9,10 @@
 \graphicspath{{figures/}}
 \usepackage{verbatim}
 \usepackage{listings}
-\usepackage{minted}
 \usepackage[dvips]{hyperref}
 \usepackage{fancyvrb,newverbs}
 \usepackage{xcolor}
+\usepackage{float}
 
 \definecolor{bg}{gray}{0.93}
 \definecolor{diffstart}{rgb}{0.1, 0.1, 0.5}
@@ -22,7 +22,7 @@
 \lstdefinelanguage{diff}{
     frame=single,
     breaklines=true,
-    basicstyle=\ttfamily\small,
+    basicstyle=\ttfamily\scriptsize,
     morecomment=[f][\color{diffstart}]{@@},
     morecomment=[f][\color{diffincl}]{+ },
     morecomment=[f][\color{diffrem}]{- },
@@ -37,7 +37,7 @@
   xleftmargin=\parindent,
   language=bash,
   showstringspaces=false,
-  basicstyle=\ttfamily\footnotesize,
+  basicstyle=\ttfamily\scriptsize,
 }
 
 \newenvironment{cverbatim}
@@ -59,7 +59,12 @@
 
 \begin{document}
  \maketitle
- \section{Introducción}
+ \tableofcontents
+
+ \clearpage
+ 
+ \section*{Introducción}\addcontentsline{toc}{section}{Introducción}
+ 
   Este tutorial tiene como objetivo la familiarización con el entorno \verb+Git+ y la plataforma \verb+GitHub+. Está diseñado para seguir paso a paso, para su aprovechamiento óptimo a continuación se detalla la guía de estilos.
  
   Las explicaciones y desarrollo del tutorial se muestran en texto normal como éste.
@@ -75,6 +80,7 @@ literalmente en el terminal de tu sistema operativo.
 El texto dentro de un recuadro como este indica la salida retornada tras ejecutar un comando
   \end{lstlisting} 
 
+ \clearpage
 
  \section{Primeros pasos}
 
@@ -141,13 +147,7 @@ git config --global user.email <email>
     
       No vamos a entrar en detalle sobre la estructura y contenido de esta carpeta ya que es parte del sistema interno de \verb+Git+. Simplemente remarcar que todos los cambios y versiones que hagas en tu futuro código, quedarán registrado dentro de esta carpeta, por lo que nunca la borres. Por otro lado, si quieres borrar un proyecto de \verb+Git+, no tienes más que borrar esta subcarpeta.
     
-    \end{enumerate}
-
-  \subsection{Control de cambios y versionado}
-
-  
-   \begin{enumerate}
-    \item En tu carpeta donde creaste el repositorio vacío crea o guarda un archivo de texto con este texto\footnote{He omitido los acentos a conciencia para evitar usar caracteres especiales}
+    \item En la carpeta donde creaste el repositorio vacío crea o guarda un archivo de texto con este texto\footnote{He omitido los acentos a conciencia para evitar usar caracteres especiales}
     \begin{cverbatim}
 mi primera linea de codigo
     \end{cverbatim}
@@ -195,12 +195,132 @@ On branch master
 nothing to commit, working tree clean
     \end{lstlisting}
     
-    \item Imagínate ahora que tu código tenía un error o bug, vamos a tener que editar de nuevo el archivo y corregir tu  o tus líneas del código para que funcione correctamente. Para ello vuelve a editar el archivo y sobreescribe el texto que habías escrito por este otro:
+    \end{enumerate}
+    
+    \subsection{Crear repositorio en GitHub}
+      Para esta parte es necesario que ya tengas un usuario registrado en GitHub, por lo que si  aún no lo has hecho sigue los pasos mostrados en la sección \ref{sec:github_login}.
+      
+      \begin{enumerate}
+       \item Ve a tu espacio GitHub con tu navegador internet \url{https://github.com/<usuario>} e identifícate pinchando en \verb+Sign In+ en la esquina superior derecha con tu contraseña\footnote{Según la configuración de Cookies de tu navegador es posible que al entrar en tu espacio ya estés registrado/a}.
+       \item Para crear un nuevo repositorio puedes pinchar bien en el icono \cverb!+! de la esquina superior derecha o pinchando en primer lugar la pestaña de \cverb+Repositories+ y luego el icono verde \cverb+New+. Un cuadro de diálogo como éste debería aparecer:
+       
+       \begin{figure}[H]\centering
+        \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{github_create_new_repo}
+       \end{figure}
+       
+       \item Para este primer caso vamos a crear un repositorio donde vamos a subir nuestro ejercicio. Así que lo nombraremos como \cverb+primeros_pasos+.
+       
+       \item La descripción suele ser una línea o dos de texto libre que resuma tu repositorio/software. Algo así como ``Voy a disfrutar tanto de este curso que he decidido subirlo a GitHub'', o este otro ``La UAH necesita una prueba de que he realizado el curso satisfactoriamente por lo que colgaré mis tareas en GitHub esto como evidencia''
+       
+       \item Ahora, como no queréis que vuestros compañeros de curso se copien de tu ejercicio supremo, vamos a seleccionar que nuestro repositorio sea privado\footnote{Actualmente el plan gratuito de GitHub admite crear repositorios tanto públicos como privados ilimitados}. Esto implicará que nadie puede ver tu código a no ser que le des permiso expreso como colaborador (lo haremos más adelante).
+       
+       \item Deja sin marcar las opciones \cverb+Add a README file+, \cverb+Add gitignore+ y \cverb+Choose a license+, ya que en la siguiente tarea vamos a importar nuestro repositorio local ya existente.
+       
+       \item Finalmente pincha en el botón verde \cverb+Create repository+ en muy poco tiempo te aparecerá una ventana explicándote los siguientes pasos/opciones que puedes hacer para importar tu repositorio. En nuestro caso usaremos la segunda opción (pero más adelante)
+       
+       \item Antes de terminar con esta parte, una cosa importante de los repositorios privados es controlar quién puede acceder a ellos. Vais a añadirme como colaborador de este repositorio que acabáis de crear, para ello pinchad en \cverb+Settings+ y depués en la barra izquierda en la segunda opción \cverb+Manage Access+. Os aparecerá esta pantalla, tras lo cual pincháis en el botón verde de \cverb+Invite a collaborator+
+
+       \begin{figure}[H]\centering
+        \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{github_add_collaborator}
+       \end{figure}
+       
+       En el recuadro tenéis que buscarme por usuario \cverb+hectornieto+, en caso de duda u os salgan otros usuarios similares, mi usuario tiene mi foto, o alguien parecido a mí con gafas de sol con el Golden Gate de fondo. De este modo sólo tu y yo podremos ver tu repositorio en GitHub, y podré ademas sugerirte cambios a través de un \cverb+Pull Request+.
+      \end{enumerate}
+       
+       En cualquier caso, te recomiendo que generes otro repositorio desde GitHub y en este caso marques estas tres casillas para que experimentes lo que hace GitHub:
+       
+       \begin{itemize}
+        \item Marcar la opción de \cverb+Add a README file+ creará en el la carpeta raíz del repositorio un archivo vacío README.md. Éste es un archivo ASCII de texto que GitHub lee y lo incorpora como descripción completa del repositorio. El archivo README.md (y por defecto la extensión \verb+md+ se basa en la edición en Markdown, una serie de etiquetas muy sencillas que permite darle formato al texto (secciones, hipervínculos, viñetas, ...). Para más información de por qué es útil el README.md y qué información incluir pincha \href{https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md}{aquí}. Para saber más sobre escritura en Markdown ve a \url{https://www.markdownguide.org/getting-started/}. Si quieres ver un ejemplo de un README.md puedes ir a alguno de mis repositorios públicos, p.ej \url{https://github.com/hectornieto/pyTSEB/README.md}
+       
+        \item Marcar la opción de \cverb+Add gitignore+ te permite elegir una de las plantillas, que te aparecerá en el menú desplegable, según el lenguaje de programación habitual que utilices. \cverb+.gitignore+ es un archivo (oculto) que puede estar en la carpeta raíz de cada repositorio \verb+Git+ y que dice a \verb+Git+ qué archivos, dentro de las carpetas y subcarpetas del repositorio, va a ignorar a la hora de detectar los cambios. Este archivo es muy útil en la mayoría de los casos ya que la mayoría de los lenguajes de programación generan (bien al compilarse o a ejecutarse) un gran número de archivos (por ejemplo \verb+.pyc+ en Python o \verb+.o+ en C) que no son parte del código fuente y por lo tanto no merece la pena realizar un seguimiento sobre ellos.
+       
+        \item Para finalizar, \cverb+Choose a license+  añadirá   también automáticamente un arhivo con el texto de la licencia y un mensaje en la página principal destacando la licencia bajo la que está el repositorio. En el futuro para tus repositorios, sobre todo los públicos, es recomendable elegir cuidadosamente la licencia. En este caso este curso (todo el tutorial y los ejemplos) los he generado bajo la licencia \cverb+Creative Commons Zero+ por lo que tienes libertad total para usarlo y distribuirlo para lo que te plazca.
+       
+        \item Finalmente si pinchas ahora en el botón verde \cverb+Create repository+ en muy poco tiempo te aparecería la ventana un repositorio GitHub, pero ya con contenido y un primer commit, con los tres archivos mencionados anteriormente:
+       
+       \begin{figure}[H]¯
+        \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{github_new_repo}
+       \end{figure}
+       
+        \item Puedes navegar y visualizar ahora el contenido de los tres archivos y familiarizarte un poco con el entorno de trabajo de GitHub. En el que puedes incluso editar código y archivos, aunque siempre es recomendable trabajar en local, editando los arhivos en tu PC, para luego sincronizar el repositorio local con el remoto. 
+        
+        Hay un gran número de pestañas en cada repositorios, pero en realidad, tan sólo usarás el 99\% del tiempo la pestaña de \cverb+Code+, \cverb+Settings+ e \cverb+Insights+, en ese orden de importancia. Luego en menor medida, y lo veremos más adelante la pestaña de \cverb+Pull Requests+.
+       \end{itemize}
+       
+    \subsection{Añadir y sincronizar repositorio remoto}\label{sec:sincronizar}
+      Ahora que tenemos el repositorio remoto vamos a añadirlo a nuestro repositorio local y sincronizar el contenido de ambos, con el fin de tener en la nube lo que hemos hecho hasta ahora. 
+      \begin{enumerate}
+       \item Vuelve a la terminal y a la carpeta donde has estado trabajando con \verb+Git+ y teclea
+
+        \hspace{-3cm}\cverb+git remote add <alias_del_remoto> https://github.com/<usuario>/<repositorio>+
+       
+       \cverb+<alias_del_remoto>+ puede ser cualquier nombre que le quieras dar, el nombre más típico que los usuarios dan es \cverb+origin+, como indicativo que la versión en la nube es el origen de todas, ya que es la única accesible a todos los usuarios o colaboradores, pero también se suele usar como nombre \cverb+remote+ o \cverb+upstream+. \cverb+<usuario>+ es tu usuario github y por último \cverb+<repositorio>+ es el nombre del repositorio que le dimos en GitHub (\cverb+primeros_pasos+)
+       
+       \item Finalmente vamos a subir todo lo que tenemos hasta ahora con el siguiente comando:
+       
+       \cverb+git push -u <alias_del_remoto> <branch>+
+       
+       donde \cverb+<alias_del_remoto>+ es el nombre que le dimos con el comando \cverb+git remote add+, y \cverb+<branch>+ es la rama que queremos subir (\cverb+master+ generalmente). La opción \cverb+-u+ es para que genere una nueva rama en el remoto y la asigne esa rama al seguimiento de la rama local actual, por lo que sólo es necesario incluir esta opción la primera vez que subamos una nueva rama al remoto. \verb+Git+ retorna un mensaje parecido a este si todo se ha subido adecuadamente:
+       \begin{lstlisting}[style=custom]
+Username for 'https://github.com': hectornieto
+Password for 'https://hectornieto@github.com': 
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (12/12), 1.03 KiB | 350.00 KiB/s, done.
+Total 12 (delta 0), reused 0 (delta 0)
+To https://github.com/hectornieto/primeros_pasos
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+      \end{lstlisting}
+      
+      \item vuelve ahora a tu navegador web y a tu repositorio en GitHub. Si lo tenías abierto es posible que tengas que actualizar el navegador. Verás que ahora tu repositorio tiene contenido, exactamente lo que tenías añadido a tu repositorio local.
+      
+      \begin{figure}[H]¯
+       \includegraphics[width=\textwidth]{github_add_readme}
+      \end{figure}´
+      
+      \item Verás que GitHub te está mandando un mensaje para añadir un README y documentar el repositorio, vamos a hacerle caso y pinchar en el botón verde \cverb+Add a README+. Aparecerá un editor de texto para escribir texto libre, en formato Markdown. Escribe una pequeña descripción, por ejemplo que tú eres el autor y que se trata de un curso. Puedes pinchar en \cverb+Preview+ para ver cómo se mostraría en la pantalla inicial de tu repositorio en GitHub. Cuando estés contento guarda el archivo pinchando abajo del todo en \cverb+Commit new file+ dejando el resto de las opciones por defecto. En seguida el navegador volverá a la pantalla de inicio y verás que el repositorio de GitHub contiene ya el nuevo archivo \verb+README.md+
+      
+      \item Ahora lo que ocurre es que en tu remoto tienes un commit (el nuevo archivo README.md) que no está en tu repositorio local. Por tanto acabamos con esta parte sincronizando ambos repositorios mediante el comando \verb+git pull+\footnote{git push sube los cambios realizados en local al remoto, mientras que git pull se podría decir que hace el camino inverso}. Para ello vuelve a tu terminal y teclea 
+      
+      \verb+git pull <alias_del_remoto> <branch>+. 
+      
+      Como es un repositorio privado siempre te va a pedir que te identifiques con tu usuario y contraseña. Si todo va bien tendrías que recibir un mensaje parecido a este:
+      
+      \begin{lstlisting}[style=custom]
+Username for 'https://github.com': hectornieto
+Password for 'https://hectornieto@github.com': 
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 752 bytes | 752.00 KiB/s, done.
+From https://github.com/hectornieto/primeros_pasos
+ * branch            master     -> FETCH_HEAD
+   9a9ea98..bb74ee6  master     -> origin/master
+Updating 9a9ea98..bb74ee6
+Fast-forward
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 README.md
+      \end{lstlisting}
+      y verás que en tu carpeta local ya tienes el archivo README.md y verás que se ha incorporado el nuevo commit tecleando \cverb+git log+
+      
+      \item Prueba a subir y sincronizar otra de las ramas que has creado para familiarizarte con el trabajo sincronizado. Prueba también a añadir nuevos ediciones y commits en tus ramas locales y a subirlas con git push al remoto.
+    \end{enumerate}
+  
+  \subsection{Control de cambios y versionado}
+    Imagínate ahora que tu código tenía un error o bug, vamos a tener que editar de nuevo el archivo que creamos con una línea y corregir tu(s) línea(s) del código para que funcione correctamente. 
+    
+    \begin{enumerate}
+    \item Para ello vuelve a editar el archivo y sobre-escribe el texto que habías escrito por este otro:
     \begin{cverbatim}
 mi primera linea de codigo corregida
     \end{cverbatim}
       
-    De nuevo para ver qué está pasando y cómo lo interpreta \verb+Git+ teclea \cverb+git status+
+    \item De nuevo para ver qué está pasando y cómo lo interpreta \verb+Git+ teclea \cverb+git status+
     
     \begin{lstlisting}[style=custom]
 On branch master
@@ -212,7 +332,9 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
     \end{lstlisting}
     
-    Ahora te está diciendo que hay cambios en tu proyecto que aún no han sido añadidos para su posterior registro. Bien puedes ejecutar \cverb+git add <archivo>+ para añadir esos cambios al siguiente registro o descartar los mismos mediante \cverb+git restore <archivo>+. Nosotros, como estamos seguros y hemos visto que esta parte de código funciona queremos añadir y registrar el cambio. Pero antes vamos a asegurarnos qué es lo que ha cambiado entre la versión actual y la que fue registrada por el primer commit. Teclea \cverb+git diff <archivo>+, un texto similar a este te aparecerá
+    Ahora te está diciendo que hay cambios en tu proyecto que aún no han sido añadidos para su posterior registro. Bien puedes ejecutar \cverb+git add <archivo>+ para añadir esos cambios al siguiente registro o descartar los mismos mediante \cverb+git restore <archivo>+. Nosotros, como estamos seguros y hemos visto que esta parte de código funciona queremos añadir y registrar el cambio. Pero antes vamos a asegurarnos qué es lo que ha cambiado entre la versión actual y la que fue registrada por el primer commit. 
+    
+    \item Teclea \cverb+git diff <archivo>+, un texto similar a este te aparecerá
     
     \begin{lstlisting}[style=custom, language=diff]
 diff --git a/archivo_1.txt b/archivo_1.txt
@@ -225,7 +347,9 @@ index 7aa40b1..b3c9105 100644
     \end{lstlisting}
     donde las partes en rojo indican líneas que han sido eliminadas y las partes en verde muestran líneas que han sido añadidas.
     
-    \item Repite los pasos 3 y 4 para añadir la nueva versión del archivo y registrarla bajo un nuevo commit. Recuerda modificar el comentario del commit para que refleje de forma clara el porqué de tal cambio (p.ej. \cverb+git commit -m 'Fix initial bug'+)
+    \item Repite los pasos 3 y 4 para añadir la nueva versión del archivo y registrarla bajo un nuevo commit. Recuerda modificar el comentario del commit para que refleje de forma clara el porqué de tal cambio, p.ej: 
+    
+    \cverb+git commit -m 'Fix initial bug'+
     
     \item Añade ahora una segunda línea de código (cualquier frase serviría) a nuestro archivo y guárdalo. Crea un nuevo archivo de texto (p.ej. \verb+archivo_2.txt+) con algún contenido (cualquier texto valdría). Si tecleas ahora \cverb+git status+ te aparecería un mensaje diciéndote por un lado que el archivo que ya habías registrado ha sido modificado y, por otro lado, que hay un nuevo archivo que aún no ha sido añadido para el seguimiento.
     
@@ -390,7 +514,9 @@ HEAD is now at 062ccfc Fix inital bug
       
     \item Teclea ahora \verb+git log --oneline+ para confirmar que estás en el commit que querías. Si todo va según lo planeado, mira ahora el contenido de la carpeta, verás que el segundo archivo que añadimos en el último commit ya no está. Además si abres el primer archivo éste no contendrá las modificaciones hechas en los dos últimos commits. En este punto podrías correr tu código con esa versión e incluso hacer nuevas modificaciones al mismo a partir de ese estado. Sin embargo, no te preocupes y no entres en pánico, siempre puedes volver a la última versión tecleando \cverb+git checkout -+ o \cverb+git checkout <branch>+, donde \verb+branch+ es la rama (por defecto \verb+master+) en la que estabas trabajando. Verás que los archivos vuelven a estar según estaban en el último commit que hicimos\footnote{Git almacena todo el historial desde la creación del proyecto (con git init) por lo que puedes revisar y restaurar todos y cada uno de las versiones que hayas registrado con git commit}.
 
-    \item Hay otros dos comandos que hacen tareas similares:     \cverb+git reset <commit>+ es mucho más agresivo al eliminar directamente los registro posteriores a \verb+<commit>+. Es una herramienta que a veces se usa para ``reescribir'' la historia\footnote{Lo de reescribir la historia mejor lo dejamos para los políticos nacionalistas, vengan de donde vengan} del repositorio borrando permanentemente los cambios realizados posteriores, y por tanto no se recomienda utilizar cuando el repositorio está ligado a un repositorio remoto, por ejemplo en GitHub. El otro comando, que es más recomendable es \cverb+git revert <commit>+, que restaurará todo el código una versión anterior y ese cambió quedará registrado como un nuevo commit, por lo tanto una manera mucho más transparente y recomendable para restaurar versiones en códigos compartidos.
+    \item Hay otros dos comandos que hacen tareas similares:     
+    
+    \cverb+git reset <commit>+ es mucho más agresivo al eliminar directamente los registro posteriores a \verb+<commit>+. Es una herramienta que a veces se usa para ``reescribir'' la historia\footnote{Lo de reescribir la historia mejor lo dejamos para los políticos nacionalistas, vengan de donde vengan} del repositorio borrando permanentemente los cambios realizados posteriores, y por tanto no se recomienda utilizar cuando el repositorio está ligado a un repositorio remoto, por ejemplo en GitHub. El otro comando, que es más recomendable es \cverb+git revert <commit>+, que restaurará todo el código una versión anterior y ese cambió quedará registrado como un nuevo commit, por lo tanto una manera mucho más transparente y recomendable para restaurar versiones en códigos compartidos.
     
    \end{enumerate}
    
@@ -445,144 +571,361 @@ ba43a6b My first commit
 
     \verb+Git+ te está indicando que hasta el penúltimo commit todos provienen de la rama master, a partir de la cual esta rama (\verb+dev+) tiene un nuevo commit \verb+deb0b98 (HEAD -> dev) Include more effiicent computation+ que ya no forma parte de \verb+master+.
     
-    \item Regresa de nuevo a tu rama \verb+master+ tecleando \cverb+git checkout master+, y vuelve a teclear \cverb+git log --oneline+, ¿ves la diferencia? Echa un ojo también al contenido del archivo\_2, que acababas de editar, y verás que ha retornado a ser idéntico a como estaba antes de la rama \verb+dev+. Puedes ir cambiando entre todas las ramas que tengas y \verb+Git+ restaurará el contenido de los archivos y el historial de versiones tal y como estaba registrada por última vez.
+    \item Regresa de nuevo a tu rama \verb+master+ tecleando \cverb+git checkout master+, y vuelve a teclear \cverb+git log --oneline+, ¿ves la diferencia? Echa un ojo también al contenido del \verb+archivo_2+, que acababas de editar, y verás que ha retornado a ser idéntico a como estaba antes de la rama \verb+dev+. Puedes ir cambiando entre todas las ramas que tengas y \verb+Git+ restaurará el contenido de los archivos y el historial de versiones tal y como estaba registrada por última vez.
     
     \item Trabajar con ramificaciones puede ser un poco locura en proyectos grandes o con varios colaboradores. Es por ello que hay herramientas para visualizar el historial del proyecto \verb+Git+ con todas sus ramificaciones. En este tutorial miraremos dos maneras, aunque hay infinidad de interfaces gráficas de \verb+Git+ que permiten de una manera u otra realizar visualizaciones similares
     \begin{itemize}
-     \item teclea \cverb+git log --oneline --graph --all simplify-by decoration+\footnote{Ya conocemos qué hace git log --oneline, en este caso le añadimos la opción graph para que muestre en la terminal en forma de gráfico, all para que muestre todas las ramas a la vez, y  simplify-by decoration para que sólo muestre los commits relevantes, es decir cuando ocurrieron las ramifiaciones} para ver en la terminal una visualización simplificada de todas las ramificaciones de tu código.
+     \item teclea: 
+     
+     \hspace{-2cm}\cverb+git log --oneline --graph --all --simplify-by decoration+
+     
+     para ver en la terminal una visualización simplificada de todas las ramificaciones de tu código. Ya conocemos qué hace \verb+git log --oneline+, en este caso le añadimos la opción \verb+graph+ para que muestre en la terminal en forma de gráfico, \verb+all+ para que muestre todas las ramas a la vez, y  \verb+simplify-by decoration+ para que sólo muestre los registros relevantes, es decir, aquéllos cuando ocurrieron las ramificaciones.
+     
      \item Otra forma más amigable de ver la evolución de las ramificaciones es en GitHub, claro está siempre que esté en esta plataforma. Vamos a echar un ojo al estado de uno de mis repositorios (\verb+pyTSEB+) en GitHub. 
      En tu explorador navega a \url{https://github.com/hectornieto/pyTSEB}, pincha en \verb+Insights+ y luego \verb+Network+ para ver un gráfico similar a este
-     \begin{figure}[H]
-      \includegraphics[width=\columnwidth]{pyTSEB_branches.png}
+     \begin{figure}[H]¯
+      \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{pyTSEB_branches}
      \end{figure}
     \end{itemize}
 
     \item Haz nuevas ramas y nuevos commits a lo loco y expermienta con todas las herramientas hechas hasta ahora. Por ejemplo prueba a ver los efectos de \verb+git reset+, \verb+git revert+ y \verb+git checkout+ para entender mejor las diferentes formas de restaurar vesiones previas del código. Lo bueno que tienen las ramas es que puedes experientar con cambios en tu código sin afectar la rama principal donde tienes la versión estable del mismo así que haz cosas, en libertad, sin miedo\footnote{En una sola frase he conseguido plagiar a M. Rajoy, Ayuso y Pablo Iglesias}.
     \end{enumerate}
+ 
+   \subsection{Actualizar el repositorio  local y remoto}
+    Antes de irnos a la cama, y tras una jornada dura de picar código ha llegado el momento de guardar nuestro código en la nube para tenerlo seguro, y así también poder acceder al mismo desde cualquier lado sin tener que llevarlo en un pendrive. Es aquí donde los repositorios remotos, es decir plataformas tipo GitHub, juegan su rol principal, aparte de ser, en un futuro próximo, el escaparate donde colguéis vuestros códigos y software para la comunidad científica y/o el público en general.
     
-  \section{Actualizar el repositorio  local y remoto}
-    Antes de irnos a la cama, y tras una jornada dura de picar código ha llegado el momento de guardar nuestro código en la nube para tenerlo seguro, y así también poder acceder al mismo desde cualquier lado sin tener que llevarlo en un pendrive. Es aquí donde los repositorios remotos, es decir plataformas tipo GitHub, juegan su rol principal, aparte de ser, en un futuro próximo, el escaparate donde colguéis vuestros códigos y software para la comunidad científica y/o el público en general. 
+    Vamos a actualizar las dos ramas con la que hemos estado trabajando. 
+    \begin{enumerate}
     
-    \subsection{Crear repositorio en GitHub}
-      Para esta parte es necesario que ya tengas un usuario registrado en GitHub, por lo que si  aún no lo has hecho sigue los pasos mostrados en la sección \ref{sec:github_login}.
-      \begin{enumerate}
-       \item Ve a tu espacio GitHub con tu navegador internet \verb+https://github.com/<usuario>+ e identifícate pinchando en \verb+Sing In+ en la esquina superior izquierda con tu contraseña\footnote{Según la configuración de Cookies de tu navegador es posible que al entrar en tu espacio ya estés registrado/a}.
-       \item Para crear un nuevo repositorio puedes pinchar bien en el icono \cverb!+! de la esquina superior derecha o pinchando en primer lugar la pestaña de \cverb+Repositories+ y luego el icono verde \cverb+New+. Un cuadro de diálogo como éste debería aparecer:
-       
-       \begin{figure}[H]
-        \includegraphics[width=\columnwidth]{github_create_new_repo.png}
-       \end{figure}
-       
-       \item Para este primer caso vamos a crear un repositorio donde vamos a subir nuestro ejercicio. Así que lo nombraremos como \cverb+primeros_pasos+.
-       
-       \item La descripción suele ser una línea o dos de texto libre que resuma tu repositorio/software. Algo así como ``Estoy disfrutando tanto de este curso que he decidido subirlo a GitHub'', o este otro ``La UAH necesita una prueba de que he realizado el curso satisfactoriamente por lo que cuelgo esto como evidencia''
-       
-       \item Ahora, como no queréis que vuestros compañeros de curso se copien de tu ejercicio supremo, vamos a seleccionar que nuestro repositorio sea privado\footnote{Actualmente el plan gratuito de GitHub admite crear repositorios tanto públicos como privados ilimitados}. Esto implicará que nadie puede ver tu código a no ser que le des permiso expreso como colaborador (lo haremos más adelante).
-       
-       
-       \item Deja sin marcar las opciones \cverb+Add a README file+, \cverb+Add gitignore+ y \cverb+Choose a license+, ya que en la siguiente tarea vamos a importar nuestro repositorio local ya existente.
-       
-       \item Finalmente pincha en el botón verde \cverb+Create repository+ en muy poco tiempo te aparecerá una ventana explicándote los siguientes pasos/opciones que puedes hacer para importar tu repositorio. En nuestro caso usaremos la segunda opción (pero más adelante)
-       
-       \item Antes de terminar con esta parte, una cosa importante de los repositorios privados es controlar quién puede acceder a ellos. Vais a añadirme como colaborador de este repostiorio que acabáis de crear, para ello pinchad en \cverb+Settings+ y depués en la barra izquierda en la segunda opción \cverb+Manage Access+. Os aparecerá esta pantalla, tras lo cual pincháis en el botón verde de \cverb+Invite a collaborator+
-
-       \begin{figure}[H]
-        \includegraphics[width=\columnwidth]{github_add_collaborator.png}
-       \end{figure}
-       
-       En el recuadro tenéis que buscarme por usuario \cverb+hectornieto+, en caso de duda u os salgan otros usuarios similares, mi usuario tiene mi foto. De este modo sólo tu y yo podremos ver tu repositorio en GitHub, y podré ademas sugerirte cambios a través de un \cverb+Pull Request+.
-      \end{enumerate}
-
-
-       
-       En cualquier caso, te recomiendo que generes otro repositorio desde GitHub y en este caso marques estas tres casillas para que experimentes lo que hace GitHub:
-       
-       \begin{itemize}
-        \item Marcar la opción de \cverb+Add a README file+ creará en el la carpeta raíz del repositorio un archivo vacío README.md. Éste es un archivo ASCII de texto que GitHub lee y lo incorpora como descripción completa del repositorio. El archivo README.md (y por defecto la extensión \verb+md+ se basa en la edición en Markdown, una serie de etiquetas muy sencillas que permite darle formato al texto (secciones, hipervínculos, viñetas, ...). Para más información de por qué es útil el README.md y qué información incluir pincha \href{aquí}{https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md}. Para saber más sobre escritura en Markdown ve a \url{https://www.markdownguide.org/getting-started/}. Si quieres ver un ejemplo de un README.md puedes ir a alguno de mis repositorios públicos, p.ej \url{https://github.com/hectornieto/pyTSEB/README.md}
-       
-        \item Marcar la opción de \cverb+Add gitignore+ te permite elegir una de las plantillas, que te aparecerá en el menú desplegable, según el lenguaje de programación habitual que utilices. \cverb+.gitignore+ es un archivo (oculto) que puede estar en la carpeta raíz de cada repositorio \verb+Git+ y que dice a \verb+Git+ qué archivos, dentro de las carpetas y subcarpetas del repositorio, va a ignorar a la hora de detectar los cambios. Este archivo es muy útil en la mayoría de los casos ya que la mayoría de los lenguajes de programación generan (bien al compilarse o a ejecutarse) un gran número de archivos (por ejemplo \verb+.pyc+ en Python o \verb+.o+ en C) que no son parte del código fuente y por lo tanto no merece la pena realizar un seguimiento sobre ellos.
-       
-        \item Para finalizar, \cverb+Choose a license+  añadirá   también automáticamente un arhivo con el texto de la licencia y un mensaje en la página principal destacando la licencia bajo la que está el repositorio. En el futuro para tus repositorios, sobre todo los públicos, es recomendable elegir cuidadosamente la licencia. En este caso este curso (todo el tutorial y los ejemplos) los he generado bajo la licencia \cverb+Creative Commons Zero+ por lo que tienes libertad total para usarlo y distribuirlo para lo que te plazca.
-       
-        \item Finalmente si pinchas ahora en el botón verde \cverb+Create repository+ en muy poco tiempo te aparecería la ventana un repositorio GitHub, pero ya con contenido y un primer commit, con los tres archivos mencionados anteriormente:
-       
-       \begin{figure}[H]
-        \includegraphics[width=\columnwidth]{github_new_repo.png}
-       \end{figure}
-       
-        \item Puedes navegar y visualizar ahora el contenido de los tres archivos y familiarizarte un poco con el entorno de trabajo de GitHub. En el que puedes incluso editar código y archivos, aunque siempre es recomendable trabajar en local, editando los arhivos en tu PC, para luego sincronizar el repositorio local con el remoto. Hay un gran número de pestañas en cada repositorios, pero en realidad, tan sólo usarás el 99\% del tiempo la pestaña de \cverb+Code+, \cverb+Settings+ e \cverb+Insights+, en ese orden de importancia. Luego en menor medida, y lo veremos más adelante la pestaña de \cverb+Pull Requests+.
-       \end{itemize}
-    
-    \subsection{Añadir y sincronizar repositorio remoto}
-      Ahora que tenemos el repositorio remoto vamos a añadirlo a nuestro repositorio local y sincronizar el contenido de ambos, con el fin de tener en la nube lo que hemos hecho hasta ahora. 
-      \begin{enumerate}
-       \item Vuelve a la terminal y a la carpeta donde has estado trabajando con \verb+Git+ y teclea
-       
-       \cverb+git remote add <alias_del_remoto> https://github.com/<usuario>/<repositorio_remoto>+
-       
-       \cverb+<alias_del_remoto>+ puede ser cualquier nombre que le quieras dar, el nombre más típico que los usuarios dan es \cverb+origin+, como indicativo que la versión en la nube es el origen de todas, ya que es la única accesible a todos los usuarios o colaboradores, pero también se suele usar como nombre \cverb+remote+ o \cverb+upstream+. \cverb+<usuario>+ es tu usuario github y por último \cverb+<repositorio_remoto>+ es el nombre del repositorio que le dimos en GitHub (\cverb+primeros_pasos+)
-       
-       \item Finalmente vamos a subir todo lo que tenemos hasta ahora con el siguiente comando:
-       
-       \cverb+git push -u <alias_del_remoto> <branch>+
-       
-       donde \cverb+<alias_del_remoto>+ es el nombre que le dimos con el comando \cverb+git remote add+ (, y \cverb+<branch>+ es la rama que queremos subir (\cverb+master+ generalmente). La opción \cverb+-u+ es para que a partir de ahora se quede en memoria que ambas ramas (la remota y la local) están ligadas, por lo que sólo es necesario incluir esta opción la primera vez que sincronicemos. \verb+Git+ retorna un mensaje parecido a este si todo se ha subido adecuadamente:
-       \begin{lstlisting}[style=custom]
+     \item Empecemos con la rama \verb+dev+. Asegúrate que en el terminal que la rama dev es la rama activa\footnote{Recordatorio: git branch te dice qué ramas hay y cuál es la rama activa, y git switch <branch>  cambia entre ramas}. \verb+dev+ aún no tiene una rama hermana en el remoto por lo que tenemos que crearla y subir los contenidos mediante
+     
+     \cverb+git push -u origin dev+
+     
+     Es decir crea una rama llamada \verb+dev+en el repositorio remoto con alias \verb+origin+ y sube los contenidos de mi rama actual\footnote{Es recomendable, por simplicidad usar el mismo nombre para las ramas locales y remotas}. Debería aparecer un mensaje similar a este:
+     \begin{lstlisting}[style=custom]
 Username for 'https://github.com': hectornieto
 Password for 'https://hectornieto@github.com': 
-Enumerating objects: 12, done.
-Counting objects: 100% (12/12), done.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
 Delta compression using up to 4 threads
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (12/12), 1.03 KiB | 350.00 KiB/s, done.
-Total 12 (delta 0), reused 0 (delta 0)
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 332 bytes | 332.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: 
+remote: Create a pull request for 'dev' on GitHub by visiting:
+remote:      https://github.com/hectornieto/primeros_pasos/pull/new/dev
+remote: 
 To https://github.com/hectornieto/primeros_pasos
- * [new branch]      master -> master
-Branch 'master' set up to track remote branch 'master' from 'origin'.
-      \end{lstlisting}
+ * [new branch]      dev -> dev
+Branch 'dev' set up to track remote branch 'dev' from 'origin'.
+     \end{lstlisting}
+
+     
+     \item \verb+Master+ ya tiene su rama remota en creada, que hicimos en la sección \ref{sec:sincronizar}, por lo que para subir el contenido de tu repositorio local al GitHub no hace falta incluir las opciones \verb+-u <alias_del_remoto> <rama_del_remoto>+, y como ya por defecto +Master+ tiene un rama asignada en el remoto para su seguimiento. ´
+     
+     Cambia de rama con \cverb+git switch master+ o \cverb+git checkout master+, y teclea \cverb+git push+ para actualizar los contenidos de \verb+Master+.
+     
+    \end{enumerate}
       
-      \item vuelve ahora a tu navegador web y a tu repositorio en GitHub. Si lo tenías abierto es posible que tengas que actualizar el navegador. Verás que ahora tu repositorio tiene contenido, exactamente lo que tenías añadido a tu repositorio local.
-      
-      \begin{figure}[H]
-       \includegraphics[width=\textwidth]{github_add_readme.png}
-      \end{figure}´
-      
-      \item Verás que GitHub te está mandando un mensaje para añadir un README y documentar el repositorio, vamos a hacerle caso y pinchar en el botón verde \cverb+Add a README+. Aparecerá un editor de texto para escribir texto libre, en formato Markdown. Escribe una pequeña descripción, por ejemplo que tú eres el autor y que se trata de un curso. Puedes pinchar en \cverb+Preview+ para ver cómo se mostraría en la pantalla inicial de tu repositorio en GitHub. Cuando estés contento guarda el archivo pinchando abajo del todo en \cverb+Commit new file+ dejando el resto de las opciones por defecto. En seguida el navegador volverá a la pantalla de inicio y verás que el repositorio de GitHub contiene ya el nuevo archivo \verb+README.md+
-      
-      \item Ahora lo que ocurre es que en tu remoto tienes un commit (el nuevo archivo README.md) que no está en tu repositorio local. Por tanto acabamos con esta parte sincronizando ambos repositorios mediante el comando \verb+git pull+\footnote{git push sube los cambios realizados en local al remoto, mientras que git pull se podría decir que hace el camino inverso}. Para ello vuelve a tu terminal y teclea 
-      
-      \verb+git pull <alias_del_remoto> <branch>+. 
-      
-      Como es un repositorio privado siempre te va a pedir que te identifiques con tu usuario y contraseña. Si todo va bien tendrías que recibir un mensaje parecido a este:
-      
-      \begin{lstlisting}[style=custom]
-Username for 'https://github.com': hectornieto
-Password for 'https://hectornieto@github.com': 
-remote: Enumerating objects: 4, done.
-remote: Counting objects: 100% (4/4), done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), 752 bytes | 752.00 KiB/s, done.
-From https://github.com/hectornieto/primeros_pasos
- * branch            master     -> FETCH_HEAD
-   9a9ea98..bb74ee6  master     -> origin/master
-Updating 9a9ea98..bb74ee6
-Fast-forward
- README.md | 2 ++
- 1 file changed, 2 insertions(+)
- create mode 100644 README.md
-      \end{lstlisting}
-      y verás que en tu carpeta local ya tienes el archivo README.md y verás que se ha incorporado el nuevo commit tecleando \cverb+git log+
-      
-      \item Prueba a subir y sincronizar otra de las ramas que has creado para familiarizarte con el trabajo sincronizado. Prueba también a añadir nuevos ediciones y commits en tus ramas locales y a subirlas con git push al remoto.
+    Ya sabes el manejo básico de Git y GitHub. El resto del tutorial lo dedicaremos a tareas más específicas dentro del trabajo colaborativo, pero ya estás preparado/a para realizar el 99\% de las tareas con Git que necesitarás, por lo que ya puedes subir versionar tus propios códigos  y subirlos a GitHub, bien para compartirlos en público o mantenerlos en privado para tener siempre una copia en la nube.
+
+  \section{Fusión y resolución de conflictos}
+  \subsection{Fusionados de ramificaciones}
+    El fin último de trabar con ramas es incorporar en tu rama principal el código que hayas desarrollado, una vez hayas visto que funciona y que es estable. Para eso hay dos nuevos comandos que vamos a aprender \cverb+git rebase+ y \cverb+git merge+.
+    
+    \begin{enumerate}
+     \item Empecemos por ver de nuevo el estado de nuestras ramas, teclea
+     
+     \cverb+git log --oneline --all --graph+
+     
+     para ver la evolución de las mismas. Algo similar a esto debería aparecer:
+     
+     \begin{lstlisting}[style=custom]
+* bb74ee6 (origin/master, master) Create README.md
+| * deb0b98 (HEAD -> dev, origin/dev) Include more effiicent computation
+|/  
+* 9a9ea98 Added new module archivo_2
+* f0cf479 Added a second line of code
+* 062ccfc Fix inital bug
+* ba43a6b My first commit
+     \end{lstlisting}
+    
+    Al principio cuesta visualizarlo pero muestra que tenemos dos ramas que se bifurcan: \verb+origin/master+ y \verb+master+ son las ramas principales (la remota y la local) en la que contiene el archivo \verb+REAMDE.md+ que creamos desde \verb+GitHub+. Por otro lado temeos la rama \verb+dev+, tanto en local como en remoto(\verb+origin/dev+), que se bifurcó de \verb+master+ tras añadir \verb+archivo_2.txt+ (en este ejemplo es el commit \verb+9a9ea98+) y que incluye un registro que no está en \verb+master+ (\verb+deb0b98+ en este ejemplo). 
+    
+    Cuando estamos trabajando con ramas, y sobre todo cuando queremos incorporar los cambios realizados en una rama en la rama principal, es conveniente tener actualizada la rama que estamos desarrollando con las últimas actualizaciones de la rama principial\footnote{Imagínate que tienes tu software ya en producción (rama principal, llamémosle version 1.0) pero ya estás trabajando con la versión 2.0 en otra rama. Mientras trabajas en la nueva versión es posible que otros usuarios o tú mismo te des cuenta de la existencia de algunos bugs y/o pequeñas mejoras que hacer en la versión 1.0, por lo que añades nuevos commits a la rama principal, teniendo así la version 1.1. Llegados a este punto te interesa que la rama sobre la que estás desarrollando la versión 2.0 incorpore también esos cambios}. Esto se hace con el comando \cverb+git rebase master+.
+    
+    \item Activa la rama \verb+dev+ mediante \cverb+git switch dev+ o \cverb+git checkout dev+
+    
+    \item Antes de hacer la actualización, y para que veas mejor lo que va a pasar haz una nueva rama a partir de \verb+dev+ con:
+    \cverb+git branch dev_old+
+    
+    \item teclea de nuevo 
+    \cverb+git log --oneline --all --graph+
+    para ver que la nueva rama que has creado se encuentra en el mismo estado que \verb+dev+
+    
+    \begin{lstlisting}[style=custom]
+* bb74ee6 (origin/master, master) Create README.md
+| * deb0b98 (HEAD -> dev, origin/dev, dev_old) Include more effiicent computation
+|/  
+* 9a9ea98 Added new module archivo_2
+* f0cf479 Added a second line of code
+* 062ccfc Fix inital bug
+* ba43a6b My first commit
+    \end{lstlisting}
+    
+    \item Ahora actualiza \verb+dev+ al último registro de la rama \verb+master+ mediante
+    
+    \cverb+git rebase master+
+    
+    Que viene a indicar resitúa mi rama actual al último commit de la rama master. Vuelve a ejecutar 
+    
+    \cverb+git log --oneline --all --graph+ 
+    
+    para ver la situación de cada una de las ramas tras el rebase. También mira el contenido de tu repositorio para cada una de las ramas y las diferencias entre ellas.
+   
     \end{enumerate}
     
-    Ya sabes el manejo básico de Git y GitHub. El resto del tutorial lo dedicaremos a tareas más específicas dentro del trabajo colaborativo, pero ya estás preparado/a para realizar el 99\% de las tareas con Git que necesitarás, por lo que ya puedes subir versionar tus propios códigos  y subirlos a GitHub, bien para compartirlos en público o mantenerlos en privado para tener siempre una copia en la nube.
-  
-  \section{Fusionados de ramificaciones}
-  
-  \section{Resolución de conflictos}
+    Ahora que ya tenemos re-actualizada nuestra rama en desarrollo con la última versión de la rama principal, podemos seguir trabajando mejorando nuestro código o incorporar definitivamente los cambios a la rama \verb+master+. Para esto último se utiliza el comando \verb+git merge+. \cverb+git merge <branch>+  indica al sistema que coja la rama \cverb+<branch>+ y la fusione en la rama actual
+    
+    \begin{enumerate}
+     \item Queremos fusionar la rama \verb+dev+ en la rama \verb+master+, por lo que primero de todo tenemos que activar la rama \verb+master+
+     \cverb+git switch master+
+     \item Ya estando en la rama que queremos actualizar mediante el fusionado, teclea
+     \cverb+git merge dev+
+     
+     Como anteriormente habíamos hecho un rebase de dev a master, el fusionado se tendría que hacer sin problemes y un mensaje similar a este debería aparecer
+     \begin{lstlisting}[style=custom]
+Updating bb74ee6..cdd9770
+Fast-forward
+ archivo_2.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+     \end{lstlisting}
+     
+     \item Ahora \verb+master+ tiene todos los cambios y actualizaciones hechas en \verb+dev+, por lo que ambas ramas son idénticas y, de hecho podríamos eliminar \verb+dev+. Teclea 
+     \cverb+git branch -D dev+ para borrar definitivamente \verb+dev+ de tu repositorio local, aunque seguirá existiendo en tu repositorio remoto. Para eliminar ramas del remoto, por ejemplo de GitHub, puedes hacerlo directamente desde la web de GitHub o mediante el comando \cverb+git push <alias_del_remoto>  --delete <rama_del_remoto>+.
 
+    \end{enumerate}
+    
+    Si te fijas de nuevo en el mensaje que recibiste al ejecutuar \verb+git merge dev+, La actualización/fusionado se ha realizado mediante la estrategia \verb+Fast Forward+, que significa que simplemente git puede añadir todos los registros nuevos al final del último registro. Esto es debido a que previamente al fusionado hicimos una actualización de la rama \verb+dev+ para que incluyese todos los commits de \verb+master+ posteriores al momento en que ambas ramas se separaron. Esto a veces no siempre es posible y, sobre todo al actualizar/sincronizar los repositorios remotos, que han podido sufrir cambios desde otro ordenador o por otro usuarios. 
+    
+    Afortunadamente \verb+Git+ es suficientemente inteligente para decidir qué estrategia de fusionado es la mejor para cada caso (según los registros en común y las divergencias entre ramas), por lo que no te tienes que preocupar mucho de esto\footnote{Sobre todo para el nivel de programación al que aspiramos}. Sin embargo, puede darse el caso, y más frecuente de lo que te imaginas sobre todo en las fases de iniciación de \verb+Git+, que haya casos en los que el sistema no pueda hacer la fusión de forma automática, y entonces es cuando tenemos nosotros que resolver el conflicto.
+  
+  \subsection{Resolución de conflictos}
+    Un conflicto es debido a que al hacer ejecutar ua actualización de ramas, bien sea por \verb+merge+, \verb+rebase+ o \verb+pull+ hay líneas del código que han sido modificadas en las dos ramas y discrepan en su contenido. En estos casos, que pueden ser bastante probables si no hacemos fusionados y actualizacoines con el remoto frecuentes. Cuando esto ocurre \verb+Git+ avisa que no ha podido completar el fusionado por la existencia de conflictos y nos pide que manualmente los solucionemos.
+    
+    Vamos a generar voluntariamente un conflicto y ver lo que pasa y los pasos a seguir para resolverlo:
+    \begin{enumerate}
+     \item Partimos de la situación anterior, en la que tenemos una rama \verb+master+ con los cambios de \verb+dev+ ya incorporados.
+     
+     \item Crea una nueva rama y llámala por ejemplo \verb+futuro_conflicto+:
+     \cverb+branch futuro_conflicto+
+     
+     \item con la rama \verb+master+ activada edita uno de los arhivos de texto (por ejemplo \verb+archivo_1.txt+) y añade una línea con este texto
+     \cverb+nueva linea de codigo de la rama master+
+     
+     \item Registra el cambio en un nuevo commit, p.ej.
+     \begin{cverbatim}
+git add archivo_1.txt
+git commit -m 'master conflicting commit'
+     \end{cverbatim}
+
+     \item cambia ahora a la rama \verb+futuro_conflicto+ y edita el mismo archivo\footnote{verás que al estar un commit por detrás de master la linea que recientemente editaste no aparece} con esta linea
+     
+     \cverb+nueva linea de codigo en futuro_conflicto+
+     
+     \item registra el cambio en un nuevo commit, p.ej.
+     \begin{cverbatim}
+git add archivo_1.txt
+git commit -m 'futuro_conflicto conflicting commit'
+     \end{cverbatim}
+     
+     \item Echa un ojo ahora a las diferencias entre las dos ramas
+     
+     \cverb+git diff futuro_conflicto master+
+
+    \begin{lstlisting}[language=diff]
+diff --git a/archivo_1.txt b/archivo_1.txt
+index 7230ec3..16094fb 100644
+--- a/archivo_1.txt
++++ b/archivo_1.txt
+@@ -1,3 +1,3 @@
+ mi primera linea de codigo corregida
+ segunda linea de codigo
+-nueva linea de codigo en futuro_conflicto
++nueva linea de codigo de la rama master
+    \end{lstlisting}
+    Verás que sólo difieren en una línea.
+    
+    \item Ahora vamos a intentar fusionar la rama \verb+futuro_conflicto+ en \verb+master+. Activa la rama \verb+master+ y teclea
+    
+    \cverb+git merge futuro_conflcto+
+    
+    Recibirás un mensaje parecido a este:
+    \begin{lstlisting}[style=custom]
+Auto-merging archivo_1.txt
+CONFLICT (content): Merge conflict in archivo_1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+    \end{lstlisting}
+    Que viene a decir que \verb+Git+ no puede por sí solo fusionar las ramas por la existencia de conflictos en el \verb+archivo_1.txt+. Nos pide que arreglemos el conflicto y que registremos el cambio.
+    
+    \item Edita de nuevo el archivo en conflicto, verás que presenta un texto similar a este:
+    
+    \begin{lstlisting}[style=custom]
+mi primera linea de codigo corregida
+segunda linea de codigo
+<<<<<<< HEAD
+nueva linea de codigo de la rama master
+=======
+nueva linea de codigo en futuro_conflicto
+>>>>>>> futuro_conflicto
+    \end{lstlisting}
+    
+    \verb+Git+ te está indicando dónde y en qué modo está el conflcto. Tenemos que resolvor todo el texto que está entre \verb+<<<<<<<+ y \verb+>>>>>>>+, de modo que lo que hay entre \verb+<<<<<<< HEAD+ y \verb+=======+ es la parte conflictiva que pertenece al último commit (\verb+HEAD+) de la rama actual (\verb+master+), y lo que está entre \verb+=======+ y es la parte conflictiva que hay en la rama \verb+futuro_conflicto+.
+    
+    \item Edita manualmente el texto de modo que tu código final se ajuste a lo que realmente querías, por ejemplo podemos pensar que la parte de \verb+master+ es la buena, o viceversa, o incluso que ninguna de las dos líneas es la correcta y reescribir esa línea.
+    
+    \item Una vez termines y estés satisfecho con la resolución del conflicto tu texto no debería contener ningún caracter del tipo \verb+<<<<<<<+, \verb+>>>>>>>+ o \verb+=======+. Por ejemplo:
+  
+    \begin{lstlisting}[style=custom]
+mi primera linea de codigo corregida
+segunda linea de codigo
+nueva linea de codigo con conflicto resuelto
+    \end{lstlisting}
+    
+    Podemos guardar el archivo y cerrarlo.
+    
+    \item Ya tenemos el archivo como nos gustaría que quedase tras la fusión, para continuar con la misma tendemos que volver a añadirlo al espacio de trabajo:
+    \cverb+git add archivo_1.txt+
+    
+    \item Opcionalmente podemos registrar el conflicto con un nuevo commit
+    
+    \item Esto lo repetiríamos para cualquier otro conflicto que tengamos, una vez todos estén resueltos y añadios al espacio de trabajo podemos continuar con la fusión mediante
+    
+    \cverb+git merge --continue+
+    Si no has registrado commits durante esta fase, al ejecutar este último comando \verb+Git+ te daraá la opción de editar el texto del commit, puedes dejar ese texto por defecto o modificarlo.
+    
+    ¡Enhorabuena! ya ha solucionado tu primer conflicto durante una fusión. Si bien los pasos a realizar durante un conflicto siempre son los mismos: editar los archivos conflictivos, añadirlos al espacio de trabajo y continuar el fusionado mediante el keyword (\verb+--continue+), no hay ninguna regla sobre cómo resolver los mismos\footnote{si la hubiera Git ya habría hecho el fusionado automáticamente}, y cada caso que se te presente será distintos y tendrás que apelar al sentido común y al objetivo que tenga la(s) linea(s) de código conflictivas.
+     
+    \end{enumerate}
+
+  \section{Código colaborativo en GitHub}
+   En esta última tarea vais a subir vuestros progresos a mi repositorio del curso (\url{https://github.com/hectornieto/cursoGit}), con el fin de poder certificar a la UAH vuestro aprovechamiento del curso.
+   
+   A la hora de trabajar en un equipo o incluso sugerir cambios en el repositorio de un tercero no es recomendable hacerlo directamente en el repositorio original. El proceso típico es hacer una copia (\verb+Fork+) en tu cuenta GitHub, hacer los cambios necesarios y hacer un \verb+Pull Request+ desde tu repositorio GitHub hacia el repositorio original.
+   
+   \subsection{Creación de copias (``Forks'')}
+  \begin{enumerate}
+   \item Primero vamos a descargar y sincronizar el repositorio del curso a una carpeta de tu PC. Teclea
+   
+   \cverb+git clone https://github.com/hectornieto/cursoGit+
+   Un mensaje parecido a éste aparecerá 
+   
+   \begin{lstlisting}[style=custom]
+Cloning into 'cursoGit'...
+remote: Enumerating objects: 72, done.
+remote: Counting objects: 100% (72/72), done.
+remote: Compressing objects: 100% (49/49), done.
+remote: Total 72 (delta 29), reused 60 (delta 20), pack-reused 0
+Unpacking objects: 100% (72/72), 13.05 MiB | 9.12 MiB/s, done.
+   \end{lstlisting}
+   y tendrás un repositorio local del curso en la carpeta \cverb+cursoGit+. Si tienes tiempo y ganas, puedes ver todos los commits que se han hecho para preparar el curso, desde que se inició el repositorio.
+   
+   \item Teclea \cverb+git remote -v+ para confirmar que el repositorio ya está ligado al repositorio remoto con alias \verb+origin+.
+   
+   \begin{lstlisting}[style=custom]
+origin	https://github.com/hectornieto/cursoGit (fetch)
+origin	https://github.com/hectornieto/cursoGit (push)
+   \end{lstlisting}
+   
+   \item Abre tu navegador y ve al repositorio cursoGit de GitHub: \url{https://github.com/hectornieto/cursoGit}. Asegúrate de ingresar en GitHub con tu usuario y contraseña, y pincha en el botón \cverb+Fork+ de la parte superior derecha.
+   
+   \item Ahora ve a tu cuenta GitHub y verás que tienes en tu GitHub una copia del repositorio del curso. Si miras a través de las distintas ramas del repositorio verás en primer lugar que he creado una rama por cada uno de vosotros, y al pinchar en cada una de ellas aparecerá un mensajito que dice \verb+This branch is even with hectornieto:<branch>+. Normal, porque de momento acabamos de hacer la copia.
+   
+   \item Vuelve al terminal de tu PC y añade también la copia remota de tu GitHub a tu repositorio local con:
+   
+   \hspace{-3cm}\cverb+git remote add <alias_del_remoto> https://github.com/<usuario>/cursoGit+
+   
+   Donde \cverb+<alias_del_remoto>+ podría ser cualquier nombre excepto \verb+origin+ ya que este alias ya está asignado al repositorio de mi cuenta. Un nombre común en estos casos suele ser \cverb+upstream+.
+   
+   \item Confirma que tu repositorio local está ahora conectado a los dos repositorios remotos, el original al que más adelante haremos el \verb+Pull Request+ y su copia en tu propio espacio \verb+GitHub+, mediante el comando \cverb+git remote -v+
+  
+    \begin{lstlisting}[style=custom]   
+origin	https://github.com/hectornieto/cursoGit (fetch)
+origin	https://github.com/hectornieto/cursoGit (push)
+upstream	https://github.com/complutig/cursoGit (fetch)
+upstream	https://github.com/complutig/cursoGit (push)
+    \end{lstlisting}
+    \end{enumerate}
+    
+    La idea de tener dos remotos es usar el remoto original para tener siempre actualizado tus repositorios, tanto el  local como tu copia remota. Para ello se recomienda confirmar el estado de sincronización con \cverb+git status+ y en caso de que haya nuevos commits en el repositorio original traerlos a tus copias con \cverb+git pull origin <branch>+. Luego subir los cambios que hagas desde tu repositorio local a tu repositorio remoto, con el fin último de hacer el \verb+Pull Request+ desde tu remoto al remoto original.
+
+    \subsection{Sugerencias de cambios (``Pull Request'')}
+    Ya tenemos nuestra copia local y remoto. Ahora lo que vamos a hacer para terminar el curso es añadir todos los archivos que has creado en la práctica anterior al repositorio del curso. Para ello vas a trabajar con la rama asociada a tu nombre de usuario \verb+GitHub+.
+    
+    \begin{enumerate}
+     \item Para asegurarnos que tenemos los últimos registros del repositorio original teclea \cverb+git fetch --all+
+     
+     \item Como hay una rama remota con tu nombre de usuario \verb+GitHub+ teclea \cverb+git checkout <usuario>+ para que el sistema construya esa rama en tu repositorio local.
+     
+     \item Crea una carpeta vacía llamada \cverb+ejercicio_<usuario>+ donde sustituye \cverb+<usuario>+ por tu nombre de usuario GitHub.
+     
+     \item Copia todo el repositorio de \verb+primeros_pasos+ a esta carpeta
+     
+     \item Añade esa carpeta y todo su contenido al sistema \verb+Git+ y registra el cambio con un commit
+     
+     \begin{cverbatim}
+git add ejercicio_<usuario>
+git commit -m <mensaje>
+     \end{cverbatim}
+     
+     \item Sube los cambios a tu repositorio remoto con:
+     
+     \cverb+git push <alias_del_remoto> <branch>+
+     
+     donde \cverb+<alias_del_remoto>+ es el alias de tu remoto (p.ej. \cverb+upstream+) y \cverb+<branch>+ es el nombre de la rama que estás subiendo (que en este caso es el nombre de tu usuario \verb+GitHub+). SI todo va bien un mensaje similar a este debería aparecer
+     
+     \begin{lstlisting}[style=custom]
+Username for 'https://github.com': hectornieto
+Password for 'https://hectornieto@github.com': 
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 237 bytes | 237.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/complutig/cursoGit
+5b0e2c6..f98d500  test -> test
+     \end{lstlisting}
+     
+     \item Ahora que has subido los cambios a tu repositorio remoto puedes ir a tu cuenta \verb+GitHub+, navegar al repositorio \verb+cursoGit+ y activar la rama con tu nombre. Debería aparecer una pantalla con un mensaje similar a este:
+     
+     \begin{figure}[H]
+      \hspace{-2cm}\includegraphics[width=1.6\columnwidth]{github_ready_for_pull_request}
+     \end{figure}
+
+    Como ves ya \verb+GitHub+ detecta que ha habido cambios entre la rama que tienes en tu repositorio remoto y la misma rama del repositorio original y te ofrece la posibilidad de comparar ambas ramas y hacer un pull request
+    
+    \item Pincha en el icono verde de \cverb+Compare & Pull Request+. Aparecerá una pantalla como esta
+     \begin{figure}[H]
+      \hspace{-2cm}\includegraphics[width=1.4\columnwidth]{github_pull_request}
+     \end{figure}
+     
+     En la que podrías modificar el repositorio base al que iría destinado el \verb+Pull Request+ y las ramas de origen y destino del mismo. En principio conviene revisar esto y en su caso modificar de acuerdo a lo que uno realmente quiera hacer. En el caso que nos atañe simplemente añade el nombre del \verb+Pull Request+, que generalemnte tiene que resumir en un a linea el por qué de la sugerencia del cambio (p.ej. \cverb+Ejercicio de <tu_nombre>+) y luego se suele añadir más detalles de los cambios en el cuadro de texto libre.
+     
+     \item Una vez completes el nombre y la descripción pincha en \cverb+Create pull request+ para finalizar con el proceso.
+
+    \end{enumerate}
+    
+    ¡Enhorabuena! Has terminado con éxito este tutorial. Ahora te recomiendo que continúes practicando y empieces a crear repositorios con tu código, como ves \verb+Git+ es muy seguro y no deberías temer equivocarte porque siempre puedes volver a un estado previo.
+    
+    Una vez que haces un \verb+Pull Request+ a un repositorio de \verb+GitHub+, su dueño recibirá un e-mail con la notificación que tiene pendiente aprobar, comentar o rechazar la sugerencia. Si lo aprueba, el repositorio original se actualiza automáticamente con los cambios que sugeriste.
+    
+     \begin{figure}[H]
+      \hspace{-1cm}\includegraphics[width=1.6\columnwidth]{github_pending_pull_request}
+      \caption{Ejemplo de Pull Request pendiente por aprobar por el dueño del repositorio}
+     \end{figure}   
+   
 
   \section{Descripción de los comandos de Git}
     \subsection{git init}
@@ -639,8 +982,6 @@ Fast-forward
        \item \cverb+git branch <branch>+ crea una nueva rama con nombre \verb+<branch>+ como réplica de la ramificación en la que actualmente te encuentres.
        \item \cverb+git branch -D <branch>+ borra la rama de nombre \verb+<branch>+. Para poder borrar una ramificación tienes que hacerlo desde otra rama distinta.
       \end{itemize}
-      
-
     
     \subsection{git merge}
     
