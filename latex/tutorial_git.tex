@@ -1,4 +1,4 @@
-\documentclass[a5paper, oneside,10pt]{article}
+\documentclass[a5paper,10pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -54,7 +54,7 @@
 
   
 % Title Page
-\title{Tutorial Git}
+\title{Tutorial Introducción a Git y GitHub}
 \author{Héctor Nieto Solana}
 
 \begin{document}
@@ -85,15 +85,16 @@ El texto dentro de un recuadro como este indica la salida retornada tras ejecuta
  \section{Primeros pasos}
 
   \subsection{Creación de una cuenta de GitHub}\label{sec:github_login}
-    GitHub es una plataforma online de repositorios \verb+Git+ que actualmente forma parte de la matriz de Microsoft. Para bien o para mal\footnote{Bill Gates se está metiendo dentro de tí no sólo a través de las vacunas}, GitHub es probablemente la plataforma más utilizada para compartir y trabajar online con código abierto, por lo que en este curso nos centraremos en esta plataforma. No obstante, hay otras plataformas alternativas para almacenar tus códigos en la nube como pueden ser \href{https://about.gitlab.com}{GitLab}, \href{https://bitbucket.org}{BitBucket}, e incluso tú o tu compañia/departamento puede tener tu propia plataforma \verb+Git+ para la gestión de software y código. Un último comentario antes de ponernos en faena es que para trabajar con \verb+Git+ no es necesario utilizar GitHub, sin embargo para trabajar con GitHub sí necesitas usar \verb+Git+. 
+    GitHub es una plataforma online de repositorios \verb+Git+ que actualmente forma parte de la matriz de Microsoft. Para bien o para mal\footnote{Bill Gates se está metiendo dentro de tí no sólo a través de las vacunas}, GitHub es probablemente la plataforma más utilizada para compartir y trabajar online con código abierto, por lo que en este curso nos centraremos en esta plataforma. No obstante, hay otras plataformas alternativas para almacenar tus códigos en la nube como pueden ser \href{https://about.gitlab.com}{GitLab}, \href{https://bitbucket.org}{BitBucket}, e incluso tú o tu compañía/departamento puede tener tu propia plataforma \verb+Git+ para la gestión de software y código. Un último comentario antes de ponernos en faena es que para trabajar con \verb+Git+ no es necesario utilizar GitHub, sin embargo para trabajar con GitHub sí necesitas usar \verb+Git+. 
     
-    En tu explorador web favorito teclea \url{github.com}´y regístrate introduciendo tus datos. GitHub ofrece cuentas gratuitas con un número limitado de respositorios públicos y/o privados por lo que en princpio es más que suficiente para las tareas diarias que necesitarás para este tutorial y también para el futuro. Es importante que elijas un nombre de usuario fácil de memorizar y de identificar por otros, ya que tu espacio GitHub será \verb+https://github.com/<nombre_de_usuario>+\footnote{Gonzalo, a no ser que busques trabajar para Cerezo mejor evita la tentación d ponerte como usuario oleoleolecholosimeone}
+    En tu explorador web favorito teclea \url{github.com} y regístrate introduciendo tus datos. GitHub ofrece cuentas gratuitas con un número limitado de respositorios públicos y/o privados por lo que en princpio es más que suficiente para las tareas diarias que necesitarás para este tutorial y también para el futuro. Es importante que elijas un nombre de usuario fácil de memorizar y de identificar por otros, ya que tu espacio GitHub será \verb+https://github.com/<nombre_de_usuario>+\footnote{Gonzalo, a no ser que busques trabajar para el Clan los Gil mejor evita la tentación de ponerte como usuario oleoleolecholosimeone}
     
   \subsection{Instalación de Git}
-    En casi todo este curso vamos a trabajar mediante líneas de comandos de \verb+Git+. En primer lugar tendremos que instalar \verb+Git+ en caso de que no esté aún instalado en tu equipo. Sigue las instrucciones adecuadas según el sistema operativo que tengas: 
+    En casi todo este curso vamos a trabajar mediante líneas de comandos de \verb+Git+. En primer lugar tendremos que instalar \verb+Git+, en caso de que no esté aún instalado en tu equipo. Sigue las instrucciones adecuadas según el sistema operativo que tengas: 
     
     \begin{itemize}
       \item MacOs: Teclea en un terminal
+      
         \cverb|brew install git|
 
       \item Windows: Pincha en el siguiente enlace. 
@@ -103,6 +104,7 @@ El texto dentro de un recuadro como este indica la salida retornada tras ejecuta
       La descarga e instalación debería ser automática
         
       \item Linux Debian. Teclea en un terminal
+      
         \cverb|sudo apt install git-all|
     \end{itemize}
     Ahora sólo un par de pasos para la configuración básica de \verb+Git+ en tu PC. Con el fin de que todos los cambios y versiones que realices queden registrados a tu nombre teclea estos dos comandos:
@@ -111,12 +113,12 @@ git config --global user.name <nombre_de_usuario>
 git config --global user.email <email>
     \end{cverbatim}
       
-    Como tenemos una cuenta de GitHub lo mejor es usar el mismo nombre de usuario y el mail que has utilizado para registrarte. El \emph{keyword} \cverb+--global+ está especificando que la variable user.name y user.email son aplicables a todo el entorno git, es decir no hace falta que más adelante especifiques de nuevo un usuario y un correo electrónico cada vez que crees un repositorio en tu PC\footnote{Si no pones --global las configuraciones que hagas se aplican sólo al repositorio en el que te encuentres}.
+    Como tenemos una cuenta de GitHub lo mejor es usar el mismo nombre de usuario y el mail que has utilizado para registrarte. El \emph{keyword} \cverb+--global+ está especificando que la variable user.name y user.email son aplicables a todo el entorno git, es decir no hace falta que más adelante especifiques de nuevo un usuario y un correo electrónico cada vez que crees un repositorio en tu PC\footnote{Si no pones ``-{}-global'' las configuraciones que hagas se aplican sólo al repositorio en el que te encuentres}.
 
   \section{Iniciación a Git}
-    \subsection{Crea tu primer repositorio}
+    \subsection{Crea tu primer repositorio}\label{sec:new_repo}
     \begin{enumerate}
-      \item Abre un terminal y navega a la carpeta donde quieras crear el repositorio\footnote{usa cd para ir cambiando de carpetas}. Para este ejercicio recomiendo usar una carpeta vacía pero en el futuro puedes usar una carpeta donde tengas algún código ya existente. 
+      \item Abre un terminal y navega a la carpeta donde quieras crear el repositorio\footnote{usa ``cd'' para ir cambiando de carpetas}. Para este ejercicio recomiendo usar una carpeta vacía pero en el futuro puedes usar una carpeta donde tengas algún código ya existente. 
       
       \item Una vez estés en la carpeta de destino teclea
       
@@ -124,13 +126,13 @@ git config --global user.email <email>
     
       Un mensaje similar a este aparece diciendo que has creado un nevo repositorio vacío.
       
-      \begin{lstlisting}[style=custom, caption=Mensaje al inicializar git]
+      \begin{lstlisting}[style=custom]
   Initialized empty Git repository in <carpeta_actual>
       \end{lstlisting}
       
       \item Si te fijas de nuevo en tu carpeta de trabajo, \verb+Git+ ha creado una subcarpeta llamada ``\verb+.git+'' con todos los archivos que requiere el sistema. Si no la ves no entres en pánico, por defecto esta carpeta está oculta\footnote{En Linux todos los archivos y carpetas que comienzan con un punto (``.'') son ocultos}
     
-      \begin{lstlisting}[style=custom, caption=Archivos y subcarpetas por defecto del sistema .git]
+      \begin{lstlisting}[style=custom]
   $ ls -lha
     total 40K
     drwxrwxr-x 7 hector hector 4,0K may  7 11:01 .
@@ -165,7 +167,7 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
     \end{lstlisting}
-    En resumen \verb+Git+ te está diciendo que en la carpeta hay un arhivo nuevo (en el ejemplo llamado \verb+archivo_1.txt"+) que aún no está en seguimiento.
+    En resumen \verb+Git+ te está diciendo que en la carpeta hay un arhivo nuevo (en el ejemplo llamado \verb+archivo_1.txt+) que aún no está en seguimiento.
 
     \item Añade este archivo al sistema tecleando
     \begin{cverbatim}
@@ -210,7 +212,7 @@ nothing to commit, working tree clean
        
        \item Para este primer caso vamos a crear un repositorio donde vamos a subir nuestro ejercicio. Así que lo nombraremos como \cverb+primeros_pasos+.
        
-       \item La descripción suele ser una línea o dos de texto libre que resuma tu repositorio/software. Algo así como ``Voy a disfrutar tanto de este curso que he decidido subirlo a GitHub'', o este otro ``La UAH necesita una prueba de que he realizado el curso satisfactoriamente por lo que colgaré mis tareas en GitHub esto como evidencia''
+       \item La descripción suele ser una línea o dos de texto libre que resuma tu repositorio/software. Algo así como ``Voy a disfrutar tanto de este curso que he decidido subirlo a GitHub'', o este otro ``La UAH necesita una prueba de que he realizado el curso satisfactoriamente por lo que colgaré mis tareas en GitHub como evidencia''
        
        \item Ahora, como no queréis que vuestros compañeros de curso se copien de tu ejercicio supremo, vamos a seleccionar que nuestro repositorio sea privado\footnote{Actualmente el plan gratuito de GitHub admite crear repositorios tanto públicos como privados ilimitados}. Esto implicará que nadie puede ver tu código a no ser que le des permiso expreso como colaborador (lo haremos más adelante).
        
@@ -224,13 +226,13 @@ nothing to commit, working tree clean
         \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{github_add_collaborator}
        \end{figure}
        
-       En el recuadro tenéis que buscarme por usuario \cverb+hectornieto+, en caso de duda u os salgan otros usuarios similares, mi usuario tiene mi foto, o alguien parecido a mí con gafas de sol con el Golden Gate de fondo. De este modo sólo tu y yo podremos ver tu repositorio en GitHub, y podré ademas sugerirte cambios a través de un \cverb+Pull Request+.
+       En el recuadro tenéis que buscarme por usuario \cverb+hectornieto+, en caso de duda u os salgan otros usuarios similares, mi usuario tiene mi foto, o alguien parecido a mí con gafas de sol con el Golden Gate Bridge de fondo. De este modo sólo tu y yo podremos ver tu repositorio en GitHub, y podré ademas sugerirte cambios a través de un \cverb+Pull Request+.
       \end{enumerate}
        
        En cualquier caso, te recomiendo que generes otro repositorio desde GitHub y en este caso marques estas tres casillas para que experimentes lo que hace GitHub:
        
        \begin{itemize}
-        \item Marcar la opción de \cverb+Add a README file+ creará en el la carpeta raíz del repositorio un archivo vacío README.md. Éste es un archivo ASCII de texto que GitHub lee y lo incorpora como descripción completa del repositorio. El archivo README.md (y por defecto la extensión \verb+md+ se basa en la edición en Markdown, una serie de etiquetas muy sencillas que permite darle formato al texto (secciones, hipervínculos, viñetas, ...). Para más información de por qué es útil el README.md y qué información incluir pincha \href{https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md}{aquí}. Para saber más sobre escritura en Markdown ve a \url{https://www.markdownguide.org/getting-started/}. Si quieres ver un ejemplo de un README.md puedes ir a alguno de mis repositorios públicos, p.ej \url{https://github.com/hectornieto/pyTSEB/README.md}
+        \item Marcar la opción de \cverb+Add a README file+ creará en el la carpeta raíz del repositorio un archivo vacío README.md. Éste es un archivo ASCII de texto que GitHub lee y lo incorpora como descripción completa del repositorio. El archivo README.md (y por defecto la extensión \verb+md+) se basa en la edición en Markdown, una serie de etiquetas muy sencillas que permite darle formato al texto (secciones, hipervínculos, viñetas, ...). Para más información de por qué es útil el README.md y qué información incluir pincha \href{https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md}{aquí}. Para saber más sobre escritura en Markdown ve a \url{https://www.markdownguide.org/getting-started/}. Si quieres ver un ejemplo de un README.md puedes ir a alguno de mis repositorios públicos, p.ej \href{https://github.com/hectornieto/pyTSEB/blob/master/README.md}{este de pyTSEB}.
        
         \item Marcar la opción de \cverb+Add gitignore+ te permite elegir una de las plantillas, que te aparecerá en el menú desplegable, según el lenguaje de programación habitual que utilices. \cverb+.gitignore+ es un archivo (oculto) que puede estar en la carpeta raíz de cada repositorio \verb+Git+ y que dice a \verb+Git+ qué archivos, dentro de las carpetas y subcarpetas del repositorio, va a ignorar a la hora de detectar los cambios. Este archivo es muy útil en la mayoría de los casos ya que la mayoría de los lenguajes de programación generan (bien al compilarse o a ejecutarse) un gran número de archivos (por ejemplo \verb+.pyc+ en Python o \verb+.o+ en C) que no son parte del código fuente y por lo tanto no merece la pena realizar un seguimiento sobre ellos.
        
@@ -308,17 +310,18 @@ Fast-forward
       \end{lstlisting}
       y verás que en tu carpeta local ya tienes el archivo README.md y verás que se ha incorporado el nuevo commit tecleando \cverb+git log+
       
-      \item Prueba a subir y sincronizar otra de las ramas que has creado para familiarizarte con el trabajo sincronizado. Prueba también a añadir nuevos ediciones y commits en tus ramas locales y a subirlas con git push al remoto.
     \end{enumerate}
   
   \subsection{Control de cambios y versionado}
-    Imagínate ahora que tu código tenía un error o bug, vamos a tener que editar de nuevo el archivo que creamos con una línea y corregir tu(s) línea(s) del código para que funcione correctamente. 
+    Imagínate ahora que tu código tenía un error o bug, vamos a tener que editar de nuevo el archivo que creamos anteriormente y corregir tu(s) línea(s) del código para que funcione correctamente. 
     
     \begin{enumerate}
     \item Para ello vuelve a editar el archivo y sobre-escribe el texto que habías escrito por este otro:
     \begin{cverbatim}
 mi primera linea de codigo corregida
     \end{cverbatim}
+    
+    Guarda el archivo y cierra tu editor de texto.
       
     \item De nuevo para ver qué está pasando y cómo lo interpreta \verb+Git+ teclea \cverb+git status+
     
@@ -347,7 +350,7 @@ index 7aa40b1..b3c9105 100644
     \end{lstlisting}
     donde las partes en rojo indican líneas que han sido eliminadas y las partes en verde muestran líneas que han sido añadidas.
     
-    \item Repite los pasos 3 y 4 para añadir la nueva versión del archivo y registrarla bajo un nuevo commit. Recuerda modificar el comentario del commit para que refleje de forma clara el porqué de tal cambio, p.ej: 
+    \item Repite los pasos 6 y 7 de la sección \ref{sec:new_repo} para añadir la nueva versión del archivo y registrarla bajo un nuevo commit. Recuerda modificar el comentario del commit para que refleje de forma clara el porqué de tal cambio, p.ej: 
     
     \cverb+git commit -m 'Fix initial bug'+
     
@@ -442,11 +445,11 @@ f0cf479 Added a second line of code
 062ccfc Fix inital bug
 ba43a6b My first commit
     \end{lstlisting}
-    con el id del commit y su descripción.
+    con los siete primeros dígitos del id del commit y su descripción\footnote{El id del commit es una frase SHA-1, de 40 dígitos en formato hexadecimal, que incluye la información básica del mismo. Como es probabilísticamente casi imposible que coincidan, uno puede referirse a cualquier commit usando sólo los 7 primeros dígitos}.
     
-    El verdadero potencial que tiene git es que guarda un registro del estado de cada uno de los archivos que hayamos añadido nuestro proyecto, por lo que podemos analizar y restaurar todas y cada una de las versiones que hayamos resgistrado con \verb+git commit+.
+    El verdadero potencial que tiene \verb+Git+ es que guarda un registro del estado de cada uno de los archivos que hayamos añadido nuestro proyecto, por lo que podemos analizar y restaurar todas y cada una de las versiones que hayamos registrado con \verb+git commit+.
     
-    \item Vamos entonces a comprobar las diferencias de contenido entre la versón actual y la de veriones anteriores. Para ello usaremos el comando \verb+git diff+, que admite distintas posibilidades. 
+    \item Vamos entonces a comprobar las diferencias de contenido entre la versión actual y versiones anteriores. Para ello usaremos el comando \verb+git diff+, que admite distintas posibilidades. 
     \begin{itemize}
       \item Podemos ver diferencias entre la versión actual y las anteriores mediante \cverb+git diff HEAD~<número>+ donde el número nos indica el número de commits anteriores al actual. Por ejemplo teclea 
       \cverb+git diff HEAD~1+ 
@@ -512,16 +515,16 @@ Turn off this advice by setting config variable advice.detachedHead to false
 HEAD is now at 062ccfc Fix inital bug
     \end{lstlisting}
       
-    \item Teclea ahora \verb+git log --oneline+ para confirmar que estás en el commit que querías. Si todo va según lo planeado, mira ahora el contenido de la carpeta, verás que el segundo archivo que añadimos en el último commit ya no está. Además si abres el primer archivo éste no contendrá las modificaciones hechas en los dos últimos commits. En este punto podrías correr tu código con esa versión e incluso hacer nuevas modificaciones al mismo a partir de ese estado. Sin embargo, no te preocupes y no entres en pánico, siempre puedes volver a la última versión tecleando \cverb+git checkout -+ o \cverb+git checkout <branch>+, donde \verb+branch+ es la rama (por defecto \verb+master+) en la que estabas trabajando. Verás que los archivos vuelven a estar según estaban en el último commit que hicimos\footnote{Git almacena todo el historial desde la creación del proyecto (con git init) por lo que puedes revisar y restaurar todos y cada uno de las versiones que hayas registrado con git commit}.
+    \item Teclea ahora \verb+git log --oneline+ para confirmar que estás en el commit que querías. Si todo va según lo planeado, mira ahora el contenido de la carpeta, verás que el segundo archivo que añadimos en el último commit ya no está. Además si abres el primer archivo, éste no contendrá las modificaciones hechas en los dos últimos commits. En este punto podrías correr tu código con esa versión e incluso hacer nuevas modificaciones al mismo a partir de ese estado. Sin embargo, no te preocupes y no entres en pánico, siempre puedes volver a la última versión tecleando \cverb+git checkout -+ o \cverb+git checkout <branch>+, donde \verb+branch+ es la rama (por defecto \verb+master+) en la que estabas trabajando. Verás que los archivos vuelven a estar según estaban en el último commit que hicimos\footnote{Git almacena todo el historial desde la creación del proyecto (con ``git init'') por lo que puedes revisar y restaurar todos y cada uno de las versiones que hayas registrado con ``git commit''}.
 
     \item Hay otros dos comandos que hacen tareas similares:     
     
-    \cverb+git reset <commit>+ es mucho más agresivo al eliminar directamente los registro posteriores a \verb+<commit>+. Es una herramienta que a veces se usa para ``reescribir'' la historia\footnote{Lo de reescribir la historia mejor lo dejamos para los políticos nacionalistas, vengan de donde vengan} del repositorio borrando permanentemente los cambios realizados posteriores, y por tanto no se recomienda utilizar cuando el repositorio está ligado a un repositorio remoto, por ejemplo en GitHub. El otro comando, que es más recomendable es \cverb+git revert <commit>+, que restaurará todo el código una versión anterior y ese cambió quedará registrado como un nuevo commit, por lo tanto una manera mucho más transparente y recomendable para restaurar versiones en códigos compartidos.
+    \cverb+git reset <commit>+ es mucho más agresivo al eliminar directamente los registro posteriores a \verb+<commit>+. Es una herramienta que a veces se usa para ``reescribir'' la historia del repositorio borrando permanentemente los cambios realizados posteriores, y por tanto no se recomienda utilizar cuando el repositorio está ligado a un repositorio remoto, por ejemplo en GitHub\footnote{Lo de reescribir la historia mejor lo dejamos para los políticos, vengan de donde vengan}. El otro comando, que es más recomendable, es \cverb+git revert <commit>+, que restaurará todo el código una versión anterior y ese cambió quedará registrado como un nuevo commit, por lo tanto una manera mucho más transparente y recomendable para restaurar versiones en códigos compartidos.
     
    \end{enumerate}
    
   \subsection{Ramificaciones del código}
-    En esta sesión trabajaremos con conceptos algo más avanzados que es posible que no necesites a estas alturas, pero extremadamente útiles cuando tienes ya desarrollado un código estable o quieras/necesites trabajar con un código de terceros, y deseas hacer alguna modificación siginicativa sin correr el riesgos de liarla parda. Para ello nos familiarizarmos con el uso de ramificaciones de código y fusionados de ramas. Esto sería la antesala del trabajo de git colaborativo, donde varios desarrolladores trabajan bajo un mismo repositorios a la vez y sugieren cambios al dueño/gestor del repositorio, también comúnmente llamado el ``Benevolente dictador del código''.
+    En esta sesión trabajaremos con conceptos algo más avanzados que es posible que no necesites a estas alturas, pero extremadamente útiles cuando tienes ya desarrollado un código estable, o estés trabajando con un código de terceros y deseas hacer alguna modificación significativa sin correr el riesgos de liarla parda. Para ello nos familiarizaremos con el uso de ramificaciones de código y fusionados de ramas. Esto sería la antesala del trabajo de \verb+Git+ colaborativo, donde varios desarrolladores trabajan bajo un mismo repositorio a la vez y sugieren cambios al dueño/gestor del repositorio, también comúnmente llamado el ``\href{http://catb.org/~esr/writings/homesteading/homesteading/ar01s16.html}{Benevolente dictador}'' del código o del repositorio\footnote{Si quieres ver la historia de los orígenes de este término pincha en \href{https://www.artima.com/weblogs/viewpost.jsp?thread=235725}{este blog del creador de Python}}.
     
     \begin{enumerate}
      \item Continuamos desde donde lo dejamos en la sección anterior, es decir debemos tener dos archivos de texto, uno con las siguientes dos líneas:
@@ -530,13 +533,13 @@ mi primera linea de codigo corregida
 segunda linea de codigo
      \end{lstlisting}
      
-     y otro con la siguente línea
+     y otro con la siguiente línea
      
     \begin{lstlisting}[style=custom]
 lorem ipsum
     \end{lstlisting}
     
-    \item Asumamos que este es un código ya maduro y puesto en producción, es decir operativo. Pero hay algunas modificaciones o ideas que pueden que sean necesarias pero puede que no estés seguro de que funcionen, o a lo mejor tu supervisor se ha obsesionado que cambies o añadas un análisis y para mantenerlo contento lo intentarás implementar aun sabiendo que prácticamente es una pérdida de tiempo. Es por ello que no quieres manosear inútilmente tu rama principal del código. Para eso creamos una nueva ramificación del mismo desde la base de la última versión registrada. En la carpeta de tu repositorio teclea
+    \item Asumamos que este es un código ya maduro y puesto en producción, es decir operativo. Pero hay algunas modificaciones o ideas que pueden que sean necesarias pero puede que no estés seguro/a de que funcionen, o a lo mejor tu supervisor(a) se ha obsesionado que cambies o añadas un análisis y para mantenerlo contento/a lo intentarás implementar aun sabiendo que prácticamente es una pérdida de tiempo. Es por ello que no quieres manosear inútilmente tu rama principal del código. Para eso creamos una nueva ramificación del mismo desde la base de la última versión registrada. En la carpeta de tu repositorio teclea
     
     \cverb+git branch dev+
     
@@ -557,7 +560,7 @@ Switched to branch 'dev'
     
     si tecleas \cverb+git log+ o \cverb+git log --oneline+ verás que tenemos los mismos commits que con tu rama maestra, y si echas un ojo al contenido de tus archivos aparecen exactamente como estaban en master. Es decir ambas ramas en este momento son exactamente idénticas.
     
-    \item Asegúrate que estas en la rama dev (con \cverb+git branch+) y edita el segundo archivo, añadiendo una segunda línea \cverb+nueva linea experimental+. Guarda el archivo, y registra el cambio\footnote{Recuerda que los cambios se registran primero añadiendo archivos al futuro commit con git add para despues confirmar y documentar el cambio con git commit}.
+    \item Asegúrate que estas en la rama dev (con \cverb+git branch+) y edita el segundo archivo, añadiendo una segunda línea \cverb+nueva linea experimental+. Guarda el archivo, y registra el cambio\footnote{Recuerda que los cambios se registran primero añadiendo archivos al futuro commit con ``git add'' para despues confirmar y documentar el cambio con ``git commit''}.
     
     \item mira ahora la lista de commits con \cverb+git log --oneline+. Algo similar a esto debería aparecerte:
     
@@ -569,17 +572,22 @@ f0cf479 Added a second line of code
 ba43a6b My first commit
     \end{lstlisting}
 
-    \verb+Git+ te está indicando que hasta el penúltimo commit todos provienen de la rama master, a partir de la cual esta rama (\verb+dev+) tiene un nuevo commit \verb+deb0b98 (HEAD -> dev) Include more effiicent computation+ que ya no forma parte de \verb+master+.
+    \verb+Git+ te está indicando que hasta el penúltimo commit todos provienen de la rama master, a partir de la cual esta rama (\verb+dev+) tiene un nuevo commit\\ 
+    \verb+deb0b98 (HEAD -> dev) Include more effiicent computation+ que ya no forma parte de \verb+master+.
     
-    \item Regresa de nuevo a tu rama \verb+master+ tecleando \cverb+git checkout master+, y vuelve a teclear \cverb+git log --oneline+, ¿ves la diferencia? Echa un ojo también al contenido del \verb+archivo_2+, que acababas de editar, y verás que ha retornado a ser idéntico a como estaba antes de la rama \verb+dev+. Puedes ir cambiando entre todas las ramas que tengas y \verb+Git+ restaurará el contenido de los archivos y el historial de versiones tal y como estaba registrada por última vez.
+    \item Regresa de nuevo a tu rama \verb+master+ tecleando \\ 
+    \cverb+git checkout master+, y vuelve a teclear\\ 
+    \cverb+git log --oneline+, ¿ves la diferencia? Echa un ojo también al contenido del \verb+archivo_2+, que acababas de editar, y verás que ha retornado a ser idéntico a como estaba antes de la rama \verb+dev+. Puedes ir cambiando entre todas las ramas que tengas y \verb+Git+ restaurará el contenido de los archivos y el historial de versiones tal y como estaba registrada por última vez.
     
     \item Trabajar con ramificaciones puede ser un poco locura en proyectos grandes o con varios colaboradores. Es por ello que hay herramientas para visualizar el historial del proyecto \verb+Git+ con todas sus ramificaciones. En este tutorial miraremos dos maneras, aunque hay infinidad de interfaces gráficas de \verb+Git+ que permiten de una manera u otra realizar visualizaciones similares
     \begin{itemize}
-     \item teclea: 
-     
+     \item teclea
+          
      \hspace{-2cm}\cverb+git log --oneline --graph --all --simplify-by decoration+
      
-     para ver en la terminal una visualización simplificada de todas las ramificaciones de tu código. Ya conocemos qué hace \verb+git log --oneline+, en este caso le añadimos la opción \verb+graph+ para que muestre en la terminal en forma de gráfico, \verb+all+ para que muestre todas las ramas a la vez, y  \verb+simplify-by decoration+ para que sólo muestre los registros relevantes, es decir, aquéllos cuando ocurrieron las ramificaciones.
+     para ver en la terminal una visualización simplificada de todas las ramificaciones de tu código. 
+     
+     Ya conocemos qué hace \verb+git log --oneline+, en este caso le añadimos la opción \verb+graph+ para que muestre en la terminal en forma de gráfico, \verb+all+ para que muestre todas las ramas a la vez, y  \verb+simplify-by decoration+ para que sólo muestre los registros relevantes, es decir, aquéllos cuando ocurrieron las ramificaciones.
      
      \item Otra forma más amigable de ver la evolución de las ramificaciones es en GitHub, claro está siempre que esté en esta plataforma. Vamos a echar un ojo al estado de uno de mis repositorios (\verb+pyTSEB+) en GitHub. 
      En tu explorador navega a \url{https://github.com/hectornieto/pyTSEB}, pincha en \verb+Insights+ y luego \verb+Network+ para ver un gráfico similar a este
@@ -588,7 +596,7 @@ ba43a6b My first commit
      \end{figure}
     \end{itemize}
 
-    \item Haz nuevas ramas y nuevos commits a lo loco y expermienta con todas las herramientas hechas hasta ahora. Por ejemplo prueba a ver los efectos de \verb+git reset+, \verb+git revert+ y \verb+git checkout+ para entender mejor las diferentes formas de restaurar vesiones previas del código. Lo bueno que tienen las ramas es que puedes experientar con cambios en tu código sin afectar la rama principal donde tienes la versión estable del mismo así que haz cosas, en libertad, sin miedo\footnote{En una sola frase he conseguido plagiar a M. Rajoy, Ayuso y Pablo Iglesias}.
+    \item Haz nuevas ramas y nuevos commits a lo loco y expermienta con todas las herramientas hechas hasta ahora. Por ejemplo prueba a ver los efectos de \verb+git reset+, \verb+git revert+ y \verb+git checkout+ para entender mejor las diferentes formas de restaurar vesiones previas del código. Lo bueno que tienen las ramas es que puedes experientar con cambios en tu código sin afectar la rama principal donde tienes la versión estable del mismo así que haz cosas, y siéntete libre\footnote{En una sola frase he conseguido plagiar a M. Rajoy, IDAyuso}.
     \end{enumerate}
  
    \subsection{Actualizar el repositorio  local y remoto}
@@ -597,11 +605,11 @@ ba43a6b My first commit
     Vamos a actualizar las dos ramas con la que hemos estado trabajando. 
     \begin{enumerate}
     
-     \item Empecemos con la rama \verb+dev+. Asegúrate que en el terminal que la rama dev es la rama activa\footnote{Recordatorio: git branch te dice qué ramas hay y cuál es la rama activa, y git switch <branch>  cambia entre ramas}. \verb+dev+ aún no tiene una rama hermana en el remoto por lo que tenemos que crearla y subir los contenidos mediante
+     \item Empecemos con la rama \verb+dev+. Asegúrate que en el terminal que la rama dev es la rama activa\footnote{Recordatorio: ``git branch'' te dice qué ramas hay y cuál es la rama activa, y ``git switch'' cambia entre ramas}. \verb+dev+ aún no tiene una rama hermana en el remoto por lo que tenemos que crearla y subir los contenidos mediante
      
      \cverb+git push -u origin dev+
      
-     Es decir crea una rama llamada \verb+dev+en el repositorio remoto con alias \verb+origin+ y sube los contenidos de mi rama actual\footnote{Es recomendable, por simplicidad usar el mismo nombre para las ramas locales y remotas}. Debería aparecer un mensaje similar a este:
+     Es decir estás ordenando a \verb+Git+ que genere una rama llamada \verb+dev+ en el repositorio remoto con alias \verb+origin+ y suba los contenidos de mi rama actual\footnote{Es recomendable, por simplicidad usar el mismo nombre para las ramas locales y remotas}. Debería aparecer un mensaje similar a este:
      \begin{lstlisting}[style=custom]
 Username for 'https://github.com': hectornieto
 Password for 'https://hectornieto@github.com': 
@@ -621,13 +629,13 @@ Branch 'dev' set up to track remote branch 'dev' from 'origin'.
      \end{lstlisting}
 
      
-     \item \verb+Master+ ya tiene su rama remota en creada, que hicimos en la sección \ref{sec:sincronizar}, por lo que para subir el contenido de tu repositorio local al GitHub no hace falta incluir las opciones \verb+-u <alias_del_remoto> <rama_del_remoto>+, y como ya por defecto +Master+ tiene un rama asignada en el remoto para su seguimiento. ´
+     \item \verb+master+ ya tiene su rama remota en creada, que hicimos en la sección \ref{sec:sincronizar}, por lo que para subir el contenido de tu repositorio local al GitHub no hace falta incluir las opciones \verb+-u <alias_del_remoto> <rama_del_remoto>+, como ya por defecto \cverb+master+ tiene esa rama en el remoto para su seguimiento. ´
      
-     Cambia de rama con \cverb+git switch master+ o \cverb+git checkout master+, y teclea \cverb+git push+ para actualizar los contenidos de \verb+Master+.
+     Cambia de rama con \cverb+git switch master+ o \cverb+git checkout master+, y teclea \cverb+git push+ para actualizar los contenidos de \verb+master+.
      
     \end{enumerate}
       
-    Ya sabes el manejo básico de Git y GitHub. El resto del tutorial lo dedicaremos a tareas más específicas dentro del trabajo colaborativo, pero ya estás preparado/a para realizar el 99\% de las tareas con Git que necesitarás, por lo que ya puedes subir versionar tus propios códigos  y subirlos a GitHub, bien para compartirlos en público o mantenerlos en privado para tener siempre una copia en la nube.
+    Ya sabes el manejo básico de \verb+Git+ y \verb+GitHub+. El resto del tutorial lo dedicaremos a tareas más específicas dentro del trabajo colaborativo, pero ya estás preparado/a para realizar el 99\% de las tareas con \verb+Git+ que necesitarás, por lo que ya puedes subir versionar tus propios códigos  y subirlos a \verb+GitHub+, bien para compartirlos en público o mantenerlos en privado para tener siempre una copia en la nube.
 
   \section{Fusión y resolución de conflictos}
   \subsection{Fusionados de ramificaciones}
@@ -650,7 +658,7 @@ Branch 'dev' set up to track remote branch 'dev' from 'origin'.
 * ba43a6b My first commit
      \end{lstlisting}
     
-    Al principio cuesta visualizarlo pero muestra que tenemos dos ramas que se bifurcan: \verb+origin/master+ y \verb+master+ son las ramas principales (la remota y la local) en la que contiene el archivo \verb+REAMDE.md+ que creamos desde \verb+GitHub+. Por otro lado temeos la rama \verb+dev+, tanto en local como en remoto(\verb+origin/dev+), que se bifurcó de \verb+master+ tras añadir \verb+archivo_2.txt+ (en este ejemplo es el commit \verb+9a9ea98+) y que incluye un registro que no está en \verb+master+ (\verb+deb0b98+ en este ejemplo). 
+    Al principio cuesta visualizarlo pero muestra que tenemos dos ramas que se bifurcan: \verb+origin/master+ y \verb+master+ son las ramas principales (la remota y la local) en la que contiene el archivo \verb+REAMDE.md+ que creamos desde \verb+GitHub+. Por otro lado tenemos la rama \verb+dev+, tanto en local como en remoto(\verb+origin/dev+), que se bifurcó de \verb+master+ tras añadir \verb+archivo_2.txt+ (en este ejemplo es el commit \verb+9a9ea98+) y que incluye un registro que no está en \verb+master+ (\verb+deb0b98+ en este ejemplo). 
     
     Cuando estamos trabajando con ramas, y sobre todo cuando queremos incorporar los cambios realizados en una rama en la rama principal, es conveniente tener actualizada la rama que estamos desarrollando con las últimas actualizaciones de la rama principial\footnote{Imagínate que tienes tu software ya en producción (rama principal, llamémosle version 1.0) pero ya estás trabajando con la versión 2.0 en otra rama. Mientras trabajas en la nueva versión es posible que otros usuarios o tú mismo te des cuenta de la existencia de algunos bugs y/o pequeñas mejoras que hacer en la versión 1.0, por lo que añades nuevos commits a la rama principal, teniendo así la version 1.1. Llegados a este punto te interesa que la rama sobre la que estás desarrollando la versión 2.0 incorpore también esos cambios}. Esto se hace con el comando \cverb+git rebase master+.
     
@@ -711,7 +719,7 @@ Fast-forward
     Afortunadamente \verb+Git+ es suficientemente inteligente para decidir qué estrategia de fusionado es la mejor para cada caso (según los registros en común y las divergencias entre ramas), por lo que no te tienes que preocupar mucho de esto\footnote{Sobre todo para el nivel de programación al que aspiramos}. Sin embargo, puede darse el caso, y más frecuente de lo que te imaginas sobre todo en las fases de iniciación de \verb+Git+, que haya casos en los que el sistema no pueda hacer la fusión de forma automática, y entonces es cuando tenemos nosotros que resolver el conflicto.
   
   \subsection{Resolución de conflictos}
-    Un conflicto es debido a que al hacer ejecutar ua actualización de ramas, bien sea por \verb+merge+, \verb+rebase+ o \verb+pull+ hay líneas del código que han sido modificadas en las dos ramas y discrepan en su contenido. En estos casos, que pueden ser bastante probables si no hacemos fusionados y actualizacoines con el remoto frecuentes. Cuando esto ocurre \verb+Git+ avisa que no ha podido completar el fusionado por la existencia de conflictos y nos pide que manualmente los solucionemos.
+    Un conflicto es debido a que al hacer ejecutar ua actualización de ramas, bien sea por \verb+merge+ o \verb+rebase+, hay líneas del código que han sido modificadas en las dos ramas y discrepan en su contenido. Cuando esto ocurre, que puede ser bastante probables si no hacemos fusionados y actualizaciones con el remoto frecuentes, \verb+Git+ avisa que no ha podido completar el fusionado por la existencia de conflictos y nos pide que manualmente los solucionemos.
     
     Vamos a generar voluntariamente un conflicto y ver lo que pasa y los pasos a seguir para resolverlo:
     \begin{enumerate}
@@ -720,7 +728,7 @@ Fast-forward
      \item Crea una nueva rama y llámala por ejemplo \verb+futuro_conflicto+:
      \cverb+branch futuro_conflicto+
      
-     \item con la rama \verb+master+ activada edita uno de los arhivos de texto (por ejemplo \verb+archivo_1.txt+) y añade una línea con este texto
+     \item con la rama \verb+master+ activada edita uno de los archivos de texto (por ejemplo \verb+archivo_1.txt+) y añade una línea con este texto
      \cverb+nueva linea de codigo de la rama master+
      
      \item Registra el cambio en un nuevo commit, p.ej.
@@ -729,7 +737,7 @@ git add archivo_1.txt
 git commit -m 'master conflicting commit'
      \end{cverbatim}
 
-     \item cambia ahora a la rama \verb+futuro_conflicto+ y edita el mismo archivo\footnote{verás que al estar un commit por detrás de master la linea que recientemente editaste no aparece} con esta linea
+     \item cambia ahora a la rama \verb+futuro_conflicto+ y edita el mismo archivo\footnote{verás que al estar un commit por detrás de master la linea que recientemente editaste no aparece} con esta línea:
      
      \cverb+nueva linea de codigo en futuro_conflicto+
      
@@ -780,7 +788,7 @@ nueva linea de codigo en futuro_conflicto
 >>>>>>> futuro_conflicto
     \end{lstlisting}
     
-    \verb+Git+ te está indicando dónde y en qué modo está el conflcto. Tenemos que resolvor todo el texto que está entre \verb+<<<<<<<+ y \verb+>>>>>>>+, de modo que lo que hay entre \verb+<<<<<<< HEAD+ y \verb+=======+ es la parte conflictiva que pertenece al último commit (\verb+HEAD+) de la rama actual (\verb+master+), y lo que está entre \verb+=======+ y es la parte conflictiva que hay en la rama \verb+futuro_conflicto+.
+    \verb+Git+ te está indicando dónde y en qué modo está el conflicto. Tenemos que resolver todo el texto que está entre \verb+<<<<<<<+ y \verb+>>>>>>>+, de modo que lo que hay entre \verb+<<<<<<< HEAD+ y \verb+=======+ es la parte conflictiva que pertenece al último commit (\verb+HEAD+) de la rama actual (\verb+master+), y lo que está entre \verb+=======+ y es la parte conflictiva que hay en la rama \verb+futuro_conflicto+.
     
     \item Edita manualmente el texto de modo que tu código final se ajuste a lo que realmente querías, por ejemplo podemos pensar que la parte de \verb+master+ es la buena, o viceversa, o incluso que ninguna de las dos líneas es la correcta y reescribir esa línea.
     
@@ -799,12 +807,12 @@ nueva linea de codigo con conflicto resuelto
     
     \item Opcionalmente podemos registrar el conflicto con un nuevo commit
     
-    \item Esto lo repetiríamos para cualquier otro conflicto que tengamos, una vez todos estén resueltos y añadios al espacio de trabajo podemos continuar con la fusión mediante
+    \item Esto lo repetiríamos para cualquier otro conflicto que tengamos, una vez todos estén resueltos y añadidos al espacio de trabajo podemos continuar con la fusión mediante
     
     \cverb+git merge --continue+
-    Si no has registrado commits durante esta fase, al ejecutar este último comando \verb+Git+ te daraá la opción de editar el texto del commit, puedes dejar ese texto por defecto o modificarlo.
+    Si no has registrado commits durante esta fase, al ejecutar este último comando \verb+Git+ te dará la opción de editar el texto del commit, puedes dejar ese texto por defecto o modificarlo.
     
-    ¡Enhorabuena! ya ha solucionado tu primer conflicto durante una fusión. Si bien los pasos a realizar durante un conflicto siempre son los mismos: editar los archivos conflictivos, añadirlos al espacio de trabajo y continuar el fusionado mediante el keyword (\verb+--continue+), no hay ninguna regla sobre cómo resolver los mismos\footnote{si la hubiera Git ya habría hecho el fusionado automáticamente}, y cada caso que se te presente será distintos y tendrás que apelar al sentido común y al objetivo que tenga la(s) linea(s) de código conflictivas.
+    ¡Enhorabuena! ya ha solucionado tu primer conflicto durante una fusión. Si bien los pasos a realizar durante un conflicto siempre son los mismos: editar los archivos conflictivos, añadirlos al espacio de trabajo y continuar el fusionado mediante el keyword (\verb+--continue+), no hay ninguna regla sobre cómo resolver los mismos\footnote{si la hubiera Git ya habría hecho el fusionado automáticamente}, y cada caso que se te presente será distinto y tendrás que apelar al sentido común y al objetivo que tenga la(s) linea(s) de código conflictiva(s).
      
     \end{enumerate}
 
