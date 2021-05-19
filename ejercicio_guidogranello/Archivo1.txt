@@ -1,0 +1,2 @@
+mi primera linea de codigo corregida
+nueva linea de codigo con conflicto resuelto
