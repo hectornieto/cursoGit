@@ -1,0 +1,2 @@
+fichero ejemplo archivo2.txt
+
