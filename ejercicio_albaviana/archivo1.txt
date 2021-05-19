@@ -1,0 +1,11 @@
+mi primera linea de codigo corregida
+segunda linea de codigo ok
+<<<<<<< HEAD
+<<<<<<< HEAD
+nueva linea de codigo conflicto resuelto
+=======
+nueva linea de codigo conflicto resuelto
+>>>>>>> futuro_conflicto
+=======
+nueva linea de codigo en futuro_conflicto
+>>>>>>> futuro_conflicto
