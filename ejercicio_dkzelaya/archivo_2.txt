@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+Segundo archivo
+=======
+Segundo archivo
+otra experiencia
+>>>>>>> 1f52a35cf16ccf8ff31bbb1c4ff269c8aa69a8b2
