@@ -45,12 +45,11 @@ Por tanto, tampoco se requiere que el alumno tenga algún conocimiento en ningú
     + Sugerencias de cambios ("Pull requests")
 
 ## Licencia
-Creative Commons Zero v1.0 Universal.
+Creative Commons Attribution-ShareAlike 4.0 International.
 
-The Creative Commons CC0 Public Domain Dedication waives copyright interest 
-in a work you've created and dedicates it to the world-wide public domain. 
-Use CC0 to opt out of copyright entirely and ensure your work has the widest 
-reach. As with the Unlicense and typical software licenses, CC0 disclaims 
-warranties. CC0 is very similar to the Unlicense.
+This work is licensed under Attribution-ShareAlike 4.0 International. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/
+This license requires that reusers give credit to the creator. It allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, even for commercial purposes. If others remix, adapt, or build upon the material, they must license the modified material under identical terms.
 
+BY: Credit must be given to you, the creator.
+SA: Adaptations must be shared under the same terms.
 

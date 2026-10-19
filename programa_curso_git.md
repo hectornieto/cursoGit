@@ -1,5 +1,6 @@
 # Programa del Curso de Introducción a Git y GitHub
 
+## Día 1
 1. Importancia del versionado y documentación de software [teoría]
 
 2. Qué es Git y la plataforma GitHub [teoría]
@@ -8,6 +9,7 @@
     + Instalación de Git
     + Configuración de Git, archivos básicos
 
+## Día 2
 4. Iniciación a Git [práctica]
     + Crear repositorios
     + Control de cambios y versionado
@@ -15,6 +17,7 @@
     + Ramificaciones ("branches") del código
     + Actualizar el repositorio  local y remoto
 
+# Día 3
 5. Fusionado y resolución de conflictos [práctica]
     + Fusionado de ramificaciones
     + Resolución de conflictos
