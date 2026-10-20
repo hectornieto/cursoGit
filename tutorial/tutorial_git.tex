@@ -3,14 +3,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{caption}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
 \usepackage[spanish]{babel}
-\usepackage{fontenc}
 \usepackage{graphicx}
 \graphicspath{{figures/}}
 \usepackage{verbatim}
-
 \usepackage{listings}
-\usepackage[dvips]{hyperref}
 \usepackage{fancyvrb,newverbs}
 \usepackage{xcolor}
 \usepackage{float}
@@ -59,7 +58,7 @@
 
  \clearpage
  
- \chapter{Introducción}\addcontentsline{toc}{chapter}{Introducción}
+ \chapter{Introducción}
  
   Este tutorial tiene como objetivo la familiarización con el entorno \verb+Git+ y la plataforma \verb+GitHub+. Está diseñado para seguir paso a paso, para su aprovechamiento óptimo a continuación se detalla la guía de estilos.
  
@@ -83,7 +82,7 @@ El texto dentro de un recuadro como este indica la salida retornada tras ejecuta
   \section{Creación de una cuenta de GitHub}\label{sec:github_login}
     GitHub es una plataforma online de repositorios \verb+Git+ que actualmente forma parte de la matriz de Microsoft. Para bien o para mal\footnote{Bill Gates se está metiendo dentro de tí no sólo a través de las vacunas... lo último lo dice Miguel Bosé}, GitHub es probablemente la plataforma más utilizada para compartir y trabajar online con código abierto, por lo que en este curso nos centraremos en esta plataforma. No obstante, hay otras plataformas alternativas para almacenar tus códigos en la nube como pueden ser \href{https://about.gitlab.com}{GitLab}, \href{https://bitbucket.org}{BitBucket}, e incluso tú o tu compañía/departamento puede tener tu propia plataforma \verb+Git+ para la gestión de software y código. Un último comentario antes de ponernos en faena es que para trabajar con \verb+Git+ no es necesario utilizar GitHub, sin embargo para trabajar con GitHub sí necesitas usar \verb+Git+.
     
-    En tu explorador web favorito teclea \url{github.com} y regístrate introduciendo tus datos. GitHub ofrece cuentas gratuitas con un número limitado de respositorios públicos y/o privados por lo que en princpio es más que suficiente para las tareas diarias que necesitarás para este tutorial y también para el futuro. Es importante que elijas un nombre de usuario fácil de memorizar y de identificar por otros, ya que tu espacio GitHub será \verb+https://github.com/<nombre_de_usuario>+\footnote{Adrián, a no ser que busques trabajar para el Clan los Gil mejor evita la tentación de ponerte como usuario oleoleolecholosimeone}
+    En tu explorador web favorito teclea \url{github.com} y regístrate introduciendo tus datos. GitHub ofrece cuentas gratuitas con un número limitado de respositorios públicos y/o privados por lo que en princpio es más que suficiente para las tareas diarias que necesitarás para este tutorial y también para el futuro. Es importante que elijas un nombre de usuario fácil de memorizar y de identificar por otros, ya que tu espacio GitHub será \verb+https://github.com/<nombre_de_usuario>+\footnote{por muy fan del Atleti que uno sea, mejor evita la tentación de ponerte como usuario oleoleolecholosimeone}
     
   \section{Instalación de Git}
     En casi todo este curso vamos a trabajar mediante líneas de comandos de \verb+Git+. En primer lugar tendremos que instalar \verb+Git+, en caso de que no esté aún instalado en tu equipo. Sigue las instrucciones adecuadas según el sistema operativo que tengas: 
@@ -246,7 +245,7 @@ nothing to commit, working tree clean
        
         \item Finalmente si pinchas ahora en el botón verde \cverb+Create repository+ en muy poco tiempo te aparecería la ventana un repositorio GitHub, pero ya con contenido y un primer commit, con los tres archivos mencionados anteriormente:
        
-       \begin{figure}[H]¯
+       \begin{figure}[H]
         \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{github_new_repo}
        \end{figure}
        
@@ -285,9 +284,9 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
       
       \item vuelve ahora a tu navegador web y a tu repositorio en GitHub. Si lo tenías abierto es posible que tengas que actualizar el navegador. Verás que ahora tu repositorio tiene contenido, exactamente lo que tenías añadido a tu repositorio local.
       
-      \begin{figure}[H]¯
+      \begin{figure}[H]
        \includegraphics[width=\textwidth]{github_add_readme}
-      \end{figure}´
+      \end{figure}
       
       \item Verás que GitHub te está mandando un mensaje para añadir un README y documentar el repositorio, vamos a hacerle caso y pinchar en el botón verde \cverb+Add a README+. Aparecerá un editor de texto para escribir texto libre, en formato Markdown. Escribe una pequeña descripción, por ejemplo que tú eres el autor y que se trata de un curso. Puedes pinchar en \cverb+Preview+ para ver cómo se mostraría en la pantalla inicial de tu repositorio en GitHub. Cuando estés contento guarda el archivo pinchando abajo del todo en \cverb+Commit new file+ dejando el resto de las opciones por defecto. En seguida el navegador volverá a la pantalla de inicio y verás que el repositorio de GitHub contiene ya el nuevo archivo \verb+README.md+
       
@@ -488,7 +487,6 @@ index 0000000..01a59b0
 +++ b/archivo_2.txt
 @@ -0,0 +1 @@
 +lorem ipsum
-
       \end{lstlisting}
       
     \end{itemize}
@@ -598,12 +596,12 @@ ba43a6b My first commit
      
      \item Otra forma más amigable de ver la evolución de las ramificaciones es en GitHub, claro está siempre que esté en esta plataforma. Vamos a echar un ojo al estado de uno de mis repositorios (\verb+pyTSEB+) en GitHub. 
      En tu explorador navega a \url{https://github.com/hectornieto/pyTSEB}, pincha en \verb+Insights+ y luego \verb+Network+ para ver un gráfico similar a este
-     \begin{figure}[H]¯
+     \begin{figure}[H]
       \hspace{-1cm}\includegraphics[width=1.2\columnwidth]{pyTSEB_branches}
      \end{figure}
     \end{itemize}
 
-    \item Haz nuevas ramas y nuevos commits a lo loco y expermienta con todas las herramientas hechas hasta ahora. Por ejemplo prueba a ver los efectos de \verb+git reset+, \verb+git revert+ y \verb+git checkout+ para entender mejor las diferentes formas de restaurar vesiones previas del código. Lo bueno que tienen las ramas es que puedes experientar con cambios en tu código sin afectar la rama principal donde tienes la versión estable (o en producción) del mismo así que \texbf{haz cosas, y siente la libertad madrileña}\footnote{En una sola frase he conseguido plagiar a la vez a M.Rajoy (el de los papeles, no el ex-presidente) y Ayuso}.
+    \item Haz nuevas ramas y nuevos commits a lo loco y expermienta con todas las herramientas hechas hasta ahora. Por ejemplo prueba a ver los efectos de \verb+git reset+, \verb+git revert+ y \verb+git checkout+ para entender mejor las diferentes formas de restaurar vesiones previas del código. Lo bueno que tienen las ramas es que puedes experientar con cambios en tu código sin afectar la rama principal donde tienes la versión estable (o en producción) del mismo así que haz cosas, y siétente libre para cacharrear.
     \end{enumerate}
  
    \section{Actualizar el repositorio  local y remoto}
@@ -733,7 +731,7 @@ Fast-forward
      \item Partimos de la situación anterior, en la que tenemos una rama \verb+master+ con los cambios de \verb+dev+ ya incorporados.
      
      \item Crea una nueva rama y llámala por ejemplo \verb+futuro_conflicto+:
-     \cverb+branch futuro_conflicto+
+     \cverb+git branch futuro_conflicto+
      
      \item con la rama \verb+master+ activada edita uno de los archivos de texto (por ejemplo \verb+archivo_1.txt+) y añade una línea con este texto
      \cverb+nueva linea de codigo de la rama master+
@@ -795,7 +793,7 @@ nueva linea de codigo en futuro_conflicto
 >>>>>>> futuro_conflicto
     \end{lstlisting}
     
-    \verb+Git+ te está indicando dónde y en qué modo está el conflicto. Tenemos que resolver todo el texto que está entre \verb+<<<<<<<+ y \verb+>>>>>>>+, de modo que lo que hay entre \verb+<<<<<<< HEAD+ y \verb+=======+ es la parte conflictiva que pertenece al último commit (\verb+HEAD+) de la rama actual (\verb+master+), y lo que está entre \verb+=======+ y es la parte conflictiva que hay en la rama \verb+futuro_conflicto+.
+    \verb+Git+ te está indicando dónde y en qué modo está el conflicto. Tenemos que resolver todo el texto que está entre \verb+<<<<<<<+ y \verb+>>>>>>>+, de modo que lo que hay entre \verb+<<<<<<< HEAD+ y \verb+=======+ es la parte conflictiva que pertenece al último commit (\verb+HEAD+) de la rama actual (\verb+master+), y lo que está entre \verb+=======+ y \verb+>>>>>>>+ es la parte conflictiva que hay en la rama \verb+futuro_conflicto+.
     
     \item Edita manualmente el texto de modo que tu código final se ajuste a lo que realmente querías, por ejemplo podemos pensar que la parte de \verb+master+ es la buena, o viceversa, o incluso que ninguna de las dos líneas es la correcta y reescribir esa línea.
     
@@ -824,80 +822,93 @@ nueva linea de codigo con conflicto resuelto
     \end{enumerate}
 
   \chapter{Código colaborativo en GitHub}
-   En esta última tarea vamos a subir vuestro ejercicio final a mi repositorio del curso (\url{https://github.com/hectornieto/cursoGit}), con el fin de poder certificar a la UAH vuestro aprovechamiento del curso.
+   En esta última tarea vamos a subir vuestro ejercicio final a mi repositorio del curso (\url{https://github.com/hectornieto/cursoGit-ejercicio}), con el fin de poder certificar a la UAH vuestro aprovechamiento del curso.
    
    A la hora de trabajar en un equipo o incluso sugerir cambios en el repositorio de un tercero no es recomendable hacerlo directamente en el repositorio original. El proceso típico es hacer una copia (\verb+Fork+) en tu cuenta GitHub, hacer los cambios necesarios y hacer un \verb+Pull Request+ desde tu repositorio GitHub hacia el repositorio original.
    
    \section{Creación de copias (``Forks'')}
-  \begin{enumerate}
-   \item Primero vamos a descargar y sincronizar el repositorio del curso a una carpeta de tu PC. Teclea
+		  \begin{enumerate}
+			  \item Abre tu navegador y ve al repositorio cursoGit-ejercicio de GitHub: \url{https://github.com/hectornieto/cursoGit-ejercicio}. Asegúrate de ingresar en GitHub con tu usuario y contraseña, y pincha en el botón \cverb+Fork+ de la parte superior derecha.
+
+		   \item Ahora ve a tu cuenta GitHub y verás que tienes en tu GitHub una copia del repositorio del curso. Si miras a través de las distintas ramas del repositorio verás que al pinchar en cada una de ellas aparecerá un mensajito que dice \verb+This branch is even with hectornieto:<branch>+. Normal, porque de momento acabamos de hacer la copia.
+
+		   \item Primero vamos a descargar y sincronizar el repositorio del curso a una carpeta de tu PC. Teclea
    
-   \cverb+git clone https://github.com/hectornieto/cursoGit+
-   Un mensaje parecido a éste aparecerá 
+		   \cverb+git clone https://github.com/<tu_usuario>/cursoGit-ejercicio+
+		   Un mensaje parecido a éste aparecerá
    
-   \begin{lstlisting}[style=custom]
-Cloning into 'cursoGit'...
+		   \begin{lstlisting}[style=custom]
+Cloning into 'cursoGit-ejercicio'...
 remote: Enumerating objects: 72, done.
 remote: Counting objects: 100% (72/72), done.
 remote: Compressing objects: 100% (49/49), done.
 remote: Total 72 (delta 29), reused 60 (delta 20), pack-reused 0
 Unpacking objects: 100% (72/72), 13.05 MiB | 9.12 MiB/s, done.
    \end{lstlisting}
-   y tendrás un repositorio local del curso en la carpeta \cverb+cursoGit+. Si tienes tiempo y ganas, puedes ver todos los commits que se han hecho para preparar el curso, desde que se inició el repositorio.
+		   y tendrás un repositorio local del curso en la carpeta \cverb+cursoGit+. Si tienes tiempo y ganas, puedes ver todos los commits que he ido haciendo durante los tutoriales.
    
-   \item Teclea \cverb+git remote -v+ para confirmar que el repositorio ya está ligado al repositorio remoto con alias \verb+origin+.
+		   \item Teclea \cverb+git remote -v+ para confirmar que el repositorio ya está ligado al repositorio remoto con alias \verb+origin+.
    
    \begin{lstlisting}[style=custom]
-origin	https://github.com/hectornieto/cursoGit (fetch)
-origin	https://github.com/hectornieto/cursoGit (push)
+origin	https://github.com/<usuario>/cursoGit-ejercicio (fetch)
+origin	https://github.com/<usuario>/cursoGit-ejercicio (push)
    \end{lstlisting}
+
    
-   \item Abre tu navegador y ve al repositorio cursoGit de GitHub: \url{https://github.com/hectornieto/cursoGit}. Asegúrate de ingresar en GitHub con tu usuario y contraseña, y pincha en el botón \cverb+Fork+ de la parte superior derecha.
+   \item Vuelve al terminal de tu PC y añade también la copia remota de mi GitHub a tu repositorio local con:
    
-   \item Ahora ve a tu cuenta GitHub y verás que tienes en tu GitHub una copia del repositorio del curso. Si miras a través de las distintas ramas del repositorio verás en primer lugar que he creado una rama por cada uno de vosotros, y al pinchar en cada una de ellas aparecerá un mensajito que dice \verb+This branch is even with hectornieto:<branch>+. Normal, porque de momento acabamos de hacer la copia.
+   \hspace{-3cm}\cverb+git remote add <alias_del_remoto> https://github.com/hectornieto/cursoGit-ejercicio+
    
-   \item Vuelve al terminal de tu PC y añade también la copia remota de tu GitHub a tu repositorio local con:
+   Donde \cverb+<alias_del_remoto>+ podría ser cualquier nombre excepto \verb+origin+ ya que este alias ya está asignado al repositorio de tu cuenta. Un nombre común en estos casos suele ser \cverb+upstream+.
    
-   \hspace{-3cm}\cverb+git remote add <alias_del_remoto> https://github.com/<usuario>/cursoGit+
-   
-   Donde \cverb+<alias_del_remoto>+ podría ser cualquier nombre excepto \verb+origin+ ya que este alias ya está asignado al repositorio de mi cuenta. Un nombre común en estos casos suele ser \cverb+upstream+.
-   
-   \item Confirma que tu repositorio local está ahora conectado a los dos repositorios remotos, el original al que más adelante haremos el \verb+Pull Request+ y su copia en tu propio espacio \verb+GitHub+, mediante el comando \cverb+git remote -v+
+   \item Confirma que tu repositorio local está ahora conectado a los dos repositorios remotos, el original upstream al que más adelante haremos el \verb+Pull Request+ y su copia en tu propio espacio \verb+GitHub+, mediante el comando \cverb+git remote -v+
   
     \begin{lstlisting}[style=custom]   
-origin	https://github.com/hectornieto/cursoGit (fetch)
-origin	https://github.com/hectornieto/cursoGit (push)
-upstream	https://github.com/complutig/cursoGit (fetch)
-upstream	https://github.com/complutig/cursoGit (push)
+origin	https://github.com/<usuario>/cursoGit-ejercicio (fetch)
+origin	https://github.com/<usuario>/cursoGit-ejercicio (push)
+upstream	https://github.com/hectornieto/cursoGit-ejercicio (fetch)
+upstream	https://github.com/hectornieto/cursoGit-ejercicio (push)
     \end{lstlisting}
     \end{enumerate}
     
-    La idea de tener dos remotos es usar el remoto original para tener siempre actualizado tus repositorios, tanto el  local como tu copia remota. Para ello se recomienda confirmar el estado de sincronización con \cverb+git status+ y en caso de que haya nuevos commits en el repositorio original traerlos a tus copias con \cverb+git pull origin <branch>+. Luego subir los cambios que hagas desde tu repositorio local a tu repositorio remoto, con el fin último de hacer el \verb+Pull Request+ desde tu remoto al remoto original.
+    La idea de tener dos remotos es usar el remoto upstream para tener siempre actualizado tus repositorios, tanto el  local como tu copia remota. Para ello se recomienda confirmar el estado de sincronización con \cverb+git status+ y en caso de que haya nuevos commits en el repositorio upstream traerlos a tus copias con \cverb+git pull upstream <branch>+. Luego subir los cambios que hagas desde tu repositorio local a tu repositorio remoto, con el fin último de hacer el \verb+Pull Request+ desde tu remoto al remoto original.
+
+    \section{Tareas antes del ``Pull Request''}
+    \begin{enumerate}
+     \item Subir todo el ejercicio hasta ahora:
+     \begin{enumerate}
+	     \item Crea una carpeta vacía llamada \cverb+ejercicio_<usuario>+ donde sustituye \cverb+<usuario>+ por tu nombre de usuario GitHub.
+
+	     \item Copia todo el repositorio de \verb+primeros_pasos+ a esta carpeta
+
+	     \item Añade esa carpeta y todo su contenido al sistema \verb+Git+ y registra el cambio con un commit
+     \end{enumerate}
+     \item Generar un posible conflicto
+     \begin{enumerate}
+	     \item Del archivo existente en mi repositorio llamado \verb+principal.txt+ hay dos líneas con puntos suspensivos intercaladas:
+      \begin{itemize}
+       \item lo mejor de Madrid es...
+       \item mi jefe se merece ...
+      \end{itemize}
+      \item Completa la frase en ambas con lo que quieras\footnote{aquí puedes ser todo lo creativo/a ácido/a que quieras, esta parte es casi la única que me motivaría revisar el trabajo :-P} y realiza un commit.
+     \end{enumerate}
+    \end{enumerate}
 
     \section{Sugerencias de cambios (``Pull Request'')}
-    Ya tenemos nuestra copia local y remoto. Ahora lo que vamos a hacer para terminar el curso es añadir todos los archivos que has creado en la práctica anterior al repositorio del curso. Para ello vas a trabajar con la rama asociada a tu nombre de usuario \verb+GitHub+.
+    Ya tenemos nuestra copia local y remoto. Ahora lo que vamos a hacer para terminar el curso es añadir todos los archivos que has creado en la práctica anterior al repositorio del curso.
     
     \begin{enumerate}
      \item Para asegurarnos que tenemos los últimos registros del repositorio original teclea \cverb+git fetch --all+
+
+     \item Antes de subir los cambios al tu repositorio remoto, asegúrate que la rama contiene los posibles últimos cambios de origin (mi repositorio) con \cverb+git pull upstream master+
+
+     \item resuelve los posibles conflictos\footnote{¿recuerdas las dos líneas con puntos suspensivos a rellenar? yo mientras tanto las he rellenedao en mi repositorio y así he creado un conflicto que debes intentar resolver}
      
-     \item Como hay una rama remota con tu nombre de usuario \verb+GitHub+ teclea \cverb+git checkout <usuario>+ para que el sistema construya esa rama en tu repositorio local.
+     \item Una vez tengas resuelto el conflicto de la manera que consideres apropiada, sube los cambios a tu repositorio remoto con:
      
-     \item Crea una carpeta vacía llamada \cverb+ejercicio_<usuario>+ donde sustituye \cverb+<usuario>+ por tu nombre de usuario GitHub.
+     \cverb+git push <alias_del_remoto> master+
      
-     \item Copia todo el repositorio de \verb+primeros_pasos+ a esta carpeta
-     
-     \item Añade esa carpeta y todo su contenido al sistema \verb+Git+ y registra el cambio con un commit
-     
-     \begin{cverbatim}
-git add ejercicio_<usuario>
-git commit -m <mensaje>
-     \end{cverbatim}
-     
-     \item Sube los cambios a tu repositorio remoto con:
-     
-     \cverb+git push <alias_del_remoto> <branch>+
-     
-     donde \cverb+<alias_del_remoto>+ es el alias de tu remoto (p.ej. \cverb+upstream+) y \cverb+<branch>+ es el nombre de la rama que estás subiendo (que en este caso es el nombre de tu usuario \verb+GitHub+). SI todo va bien un mensaje similar a este debería aparecer
+     donde \cverb+<alias_del_remoto>+ es el alias de tu remoto (p.ej. \cverb+upstream+) y master es el nombre de la rama que estás subiendo. Si todo va bien un mensaje similar a este debería aparecer
      
      \begin{lstlisting}[style=custom]
 Username for 'https://github.com': hectornieto
@@ -926,7 +937,7 @@ To https://github.com/complutig/cursoGit
       \hspace{-2cm}\includegraphics[width=1.4\columnwidth]{github_pull_request}
      \end{figure}
      
-     En la que podrías modificar el repositorio base al que iría destinado el \verb+Pull Request+ y las ramas de origen y destino del mismo. En principio conviene revisar esto y en su caso modificar de acuerdo a lo que uno realmente quiera hacer. En el caso que nos atañe simplemente añade el nombre del \verb+Pull Request+, que generalemnte tiene que resumir en un a linea el por qué de la sugerencia del cambio (p.ej. \cverb+Ejercicio de <tu_nombre>+) y luego se suele añadir más detalles de los cambios en el cuadro de texto libre.
+     En la que podrías modificar el repositorio base al que iría destinado el \verb+Pull Request+ y las ramas de origen y destino del mismo. En principio conviene revisar esto y en su caso modificar de acuerdo a lo que uno realmente quiera hacer. En el caso que nos atañe simplemente añade el nombre del \verb+Pull Request+, que generalemnte tiene que resumir en una linea el por qué de la sugerencia del cambio (p.ej. \cverb+Ejercicio de <tu_nombre>+) y luego se suele añadir más detalles de los cambios en el cuadro de texto libre.
      
      \item Una vez completes el nombre y la descripción pincha en \cverb+Create pull request+ para finalizar con el proceso.
 
@@ -942,7 +953,8 @@ To https://github.com/complutig/cursoGit
      \end{figure}   
    
 
-  \appendix{Descripción de los comandos de Git}
+  \appendix{Apéndice}
+   \chapter{Descripción de los comandos de Git}
     \section{git init}
       Inicializa un repositorio git dentro de la carpeta actual. Al ejecutar \cverb+git init+ \verb+Git+ genera automáticamente una subcarpeta \verb+.git+ con todos los archivos del sistema de git. Puedes borrar un repositorio git simplemente borrando esta carpeta.
       
@@ -995,7 +1007,7 @@ To https://github.com/complutig/cursoGit
       \begin{itemize}
        \item \cverb+git branch+ proporciona un listado de ramificaciones existentes y señala la ramificación actual.
        \item \cverb+git branch <branch>+ crea una nueva rama con nombre \verb+<branch>+ como réplica de la ramificación en la que actualmente te encuentres.
-       \item \cverb+git branch -D <branch>+ borra la rama de nombre \verb+<branch>+. Para poder borrar una ramificación tienes que hacerlo desde otra rama distinta.
+       \item \cverb+git branch -d <branch>+ borra la rama de nombre \verb+<branch>+. Para poder borrar una ramificación tienes que hacerlo desde otra rama distinta.
       \end{itemize}
     
     \section{git merge}
