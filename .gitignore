@@ -7,6 +7,10 @@
 *.dvi
 *.out
 *.toc
+*.nav
+*.snm
+*.vrb
+*.swp
 
 # MS Office files
 *.doc*
