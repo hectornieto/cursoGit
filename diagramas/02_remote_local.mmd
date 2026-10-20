@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph LOCAL["local"]
+        direction LR
+        l0((C0)) -.-> l1((C1)) -.-> l2((C2)) -.-> l3((C3)) -.-> l4((C4)) -.-> ln(("Cn<br>HEAD"))
+    end
+
+    subgraph GITHUB["GitHub"]
+        direction LR
+        g0((C0)) -.-> g1((C1)) -.-> g2((C2)) -.-> g3((C3)) -.-> g4((C4)) -.-> gn(("Cn<br>HEAD"))
+    end
+
+
+    LOCAL -- push --> GITHUB
+    GITHUB -- pull --> LOCAL
+
+    classDef blue fill:#729fcf,stroke:#3465a4,color:#000
+    class l0,l1,l2,l3,l4,ln,g0,g1,g2,g3,g4,gn,push,fetch blue
+    style LOCAL fill:#ccc,stroke:#3465a4,color:#000
+    style GITHUB fill:#ccc,stroke:#3465a4,color:#000

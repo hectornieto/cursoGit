@@ -1,0 +1,35 @@
+flowchart LR
+    init[init]
+    clone[clone]
+    c0((C0))
+    c1((C1))
+    cn((Cn))
+    add1[add]
+    add2[add]
+    commit1[commit]
+    commit2[commit]
+    archivos1@{ shape: docs, label: "Archivos<br>modificados" }
+    archivos2@{ shape: docs, label: "Archivos<br>modificados" }
+
+    subgraph ST1["STAGED AREA"]
+        archivos1
+    end
+    subgraph ST2["STAGED AREA"]
+        archivos2
+    end
+
+    init & clone --> c0
+    c0 .-> add1
+    add1 -.-> archivos1
+    archivos1 -.-> commit1
+    commit1 .-> c1
+    c1 .-> add2
+    add2 -.-> archivos2
+    archivos2 -.-> commit2
+    commit2 .-> cn
+    c0 ----> c1 ----> cn
+    
+    classDef blue fill:#729fcf,stroke:#3465a4,color:#000
+    class init,clone,c0,c1,cn,add1,add2,commit1,commit2,archivos1,archivos2 blue
+    style ST1 fill:#ccc,stroke:#3465a4,color:#000
+    style ST2 fill:#ccc,stroke:#3465a4,color:#000

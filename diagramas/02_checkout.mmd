@@ -1,0 +1,22 @@
+flowchart LR
+    c0((C0))
+    c1((C1))
+    c2((C2))
+    c3((C3))
+    c4((C4))
+    cn(("Cn<br>HEAD"))
+    archivos@{ shape: docs, label: "Archivos<br>Commit 3" }
+
+    c0 -.-> c1 -.-> c2 -.-> c3 -.-> c4 -.-> cn
+    cn -.-> checkout
+    checkout ---> c3
+    c3 -.-> archivos
+    subgraph checkout
+        direction TD       
+        archivos
+    end
+
+
+    classDef blue fill:#729fcf,stroke:#3465a4,color:#000
+    class c0,c1,c2,c3,c4,cn,archivos blue
+

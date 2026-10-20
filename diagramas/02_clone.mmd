@@ -1,0 +1,30 @@
+---
+config:
+  layout: elk
+---
+flowchart TD
+    r0((C0))
+    r1((C1))
+    r2(("C2<br>main"))
+    l0((C0))
+    l1((C1))
+    l2(("C2<br>main"))
+
+    clone[clone]
+
+    subgraph local
+        direction LR
+        l0 -.-> l1 -.-> l2
+    end
+
+    subgraph remote
+        direction LR
+        r0 -.-> r1 -.-> r2
+    end
+
+    remote --- clone --> local
+
+    classDef blue fill:#729fcf,stroke:#3465a4,color:#000
+    class r0,r1,r2,l0,l1,l2 blue
+    style remote fill:#ccc,stroke:#3465a4,color:#000
+    style local fill:#ccc,stroke:#3465a4,color:#000

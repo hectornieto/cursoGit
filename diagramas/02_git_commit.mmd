@@ -1,0 +1,20 @@
+---
+config:
+  theme: base
+  themeVariables:
+    git0: "#729fcf"
+    git1: "#cccccc"
+    commitLabelColor: "#000000"
+  gitGraph:
+    rotateCommitLabel: true
+---
+gitGraph
+    commit id: "C0" tag: "init / clone"
+    branch staged
+    commit id: "add: Archivos modificados 1" type: HIGHLIGHT
+    checkout main
+    merge staged id: "C1" tag: "commit descr."
+    checkout staged
+    commit id: "add: Archivos modificados 2" type: HIGHLIGHT
+    checkout main
+    merge staged id: "C3" tag: "commit descr."
