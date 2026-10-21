@@ -153,6 +153,7 @@ git config --global user.email <email>
       \end{lstlisting}
     
       No vamos a entrar en detalle sobre la estructura y contenido de esta carpeta ya que es parte del sistema interno de \verb+Git+. Simplemente remarcar que todos los cambios y versiones que hagas en tu futuro código, quedarán registrado dentro de esta carpeta, por lo que nunca la borres. Por otro lado, si quieres borrar un proyecto de \verb+Git+, no tienes más que borrar esta subcarpeta, eso sí, haciendo eso te cargarías todo el versionado de tu repositorio local por lo que es muy desaconsejable a no ser que sepas lo que estás haciendo.
+
     
     \item En la carpeta donde creaste el repositorio vacío crea o guarda un archivo de texto con este texto\footnote{He omitido los acentos a conciencia para evitar usar caracteres especiales}
     \begin{cverbatim}
@@ -262,7 +263,9 @@ nothing to commit, working tree clean
         \hspace{-3cm}\cverb+git remote add <alias_del_remoto> https://github.com/<usuario>/<repositorio>+
        
        \cverb+<alias_del_remoto>+ puede ser cualquier nombre que le quieras dar, el nombre más típico que los usuarios dan es \cverb+origin+, como indicativo que la versión en la nube es el origen de todas, ya que es la única accesible a todos los usuarios o colaboradores, pero también se suele usar como nombre \cverb+remote+ o \cverb+upstream+. \cverb+<usuario>+ es tu usuario github y por último \cverb+<repositorio>+ es el nombre del repositorio que le dimos en GitHub (\cverb+primeros_pasos+)
-       
+
+       \item Antes de hacer nada, como GitHub, así como GitLab, por defecto sus ramas principales las llaman ``main'' por defecto, vamos a renombar nuestra rama que git ha creado por defecto de ``master'' a ``main'' tecleando \cverb+git branch -M main+.
+
        \item Finalmente vamos a subir todo lo que tenemos hasta ahora con el siguiente comando:
        
        \cverb+git push -u <alias_del_remoto> <branch>+
