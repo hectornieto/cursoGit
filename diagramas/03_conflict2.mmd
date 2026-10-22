@@ -1,0 +1,28 @@
+---
+config: 
+  flowchart:
+    wrappingWidth: 1000
+  themeCSS: |
+    .label, .label div, .nodeLabel, .nodeLabel p {
+      text-align: left !important;
+    }
+---
+flowchart TD
+edit["eggs and bacon
+eggs sausage and bacon
+eggs and spam
+eggs bacon and spam
+eggs bacon sausage and spam
+spam bacon sausage and spam
+spam eggs spam spam spam bacon and spam
+spam spam spam egg and spam
+spam spam spam spam spam spam baked beans spam spam spam spam and spam
+lobster termidor aux crevettes with a mornay sauce garnished with truffle pate, brandy and a fried egg on top and spam"]
+add[git add corrected_file]
+commit[git commit -m 'Commit Description']
+continue[continue merge or rebase]
+
+edit -.-> add --> commit --> continue
+
+classDef blue fill:#729fcf,stroke:#3465a4,color:#000
+class add,commit,continue blue
