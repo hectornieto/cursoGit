@@ -1,0 +1,34 @@
+---
+config:
+  flowchart:
+    wrappingWidth: 1000
+  themeCSS: |
+    .label, .label div, .nodeLabel, .nodeLabel p {
+      text-align: left !important;
+    }
+---
+flowchart LR
+    c2["...<br>spam eggs bacon and spam<br>..."]
+    c3["...<br>spam eggs spam eggs and spam<br>..."]
+    c21["...<br>spam spam spam eggs and spam<br>..."]
+   
+    c2 -- main --> c3
+    c2 -- dev --> c21
+    subgraph C2
+        direction TD
+        c2
+    end
+    subgraph C3
+        direction TD
+        c3
+    end
+
+    subgraph C21
+        direction TD
+        c21
+    end
+
+    classDef blue fill:#729fcf,stroke:#3465a4,color:#000
+    class C2,C3 blue
+    classDef green fill:#72cfa8,stroke:#3465a4,color:#000
+    class C21 green

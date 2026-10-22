@@ -1,0 +1,31 @@
+---
+config:
+  theme: base
+  themeVariables:
+    git0: "#729fcf"
+    git1: "#72cfa8ff"
+    commitLabelColor: "#000000"
+---
+gitGraph
+    commit id: "C0"
+    commit id: "C1"
+    commit id: "C2" tag: "git branch dev"
+
+    branch dev
+    checkout dev
+    commit id: "C2.1"
+    commit id: "C2.2"
+    commit id: "C2.3"
+    commit id: "C2.4"
+
+    checkout main
+    commit id: "C3"
+    commit id: "C4"
+    commit id: "C5"
+    commit id: "C6"
+    commit id: "C7"
+    commit id: "C8"
+    commit id: "C2.1'" tag: "git merge dev"
+    commit id: "C2.2'"
+    commit id: "C2.3'"
+    commit id: "C2.4'" tag: "HEAD"
